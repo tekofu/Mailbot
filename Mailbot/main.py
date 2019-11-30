@@ -7,6 +7,7 @@ from owotrans import owo
 import argparse
 import urllib.request
 import json
+import rps
 
 parser = argparse.ArgumentParser()
 parser.add_argument("token", help="Discord bot token.")
@@ -23,7 +24,7 @@ async def on_message(message):
         return
 
     if message.content.startswith('.owo '):
-        await message.channel.send(owo(message.content[4:]))
+        await message.channel.send(owo(message.content[5:]))
 
     # uhhh
     #elif message.content.upper.startswith('GOODNIGHT RYAN'):
@@ -34,6 +35,19 @@ async def on_message(message):
         cryRequest = urllib.request.urlopen("https://api.apcry.deadbird.dev/cry/" + usefulMsg).read()
         cryOutput = json.loads(cryRequest)
         await message.channel.send(cryOutput['tears'])
+
+    elif message.content.startswith('.rps '):
+        usefulMsg = message.content[5:].upper()
+        playerChoice = rps.inputOption(usefulMsg)
+        if playerChoice != None:
+            compChoice = rps.compChoice()
+            winningCond = rps.calculateWinner(playerChoice, compChoice)
+            rpsOutput = rps.finalMessage(playerChoice, compChoice, winningCond)
+            await message.channel.send(rpsOutput)
+        else:
+            await message.channel.send("Input error, please try again.")
+
+
 
 client.run(parser.parse_args().token)
 
