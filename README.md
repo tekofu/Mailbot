@@ -1,6 +1,8 @@
 # Mailbot
 A discord bot written in python with the following features:
-- None
+- OwO-ify messages
+- [Cry-ify](https://apcry.deadbird.dev/) messages
 
 TODO:
-- Everything
+- Clean up code
+- Add RPS module
