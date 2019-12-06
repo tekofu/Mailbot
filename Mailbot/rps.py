@@ -5,6 +5,7 @@ import random
 
 toolList = ["ROCK", "PAPER", "SCISSORS"]
 
+
 def inputOption(playerChoice):
     if playerChoice in toolList:
         return playerChoice
@@ -48,5 +49,6 @@ def compChoice():
 
 # Print the final results
 def finalMessage(playerChoice, compChoice, winningCond):
-    rpsOutput = 'You picked ' + playerChoice + '. I picked ' + compChoice + '. You ' + winningCond + '.'
+    rpsOutput = 'You picked ' + playerChoice + '. I picked ' + \
+        compChoice + '. You ' + winningCond + '.'
     return rpsOutput

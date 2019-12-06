@@ -19,9 +19,11 @@ youtubeToken = tokenLoad['youtubeToken']
 
 client = discord.Client()
 
+
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
+
 
 @client.event
 async def on_message(message):
@@ -32,12 +34,13 @@ async def on_message(message):
         await message.channel.send(owo(message.content[5:]))
 
     # uhhh
-    #elif message.content.upper.startswith('GOODNIGHT RYAN'):
+    # elif message.content.upper.startswith('GOODNIGHT RYAN'):
     #   await message.channel.send("Goodnight Ryan!")
 
     elif message.content.startswith('.cry '):
         usefulMsg = message.content[5:].replace(' ', '%20')
-        cryRequest = urllib.request.urlopen("https://api.apcry.deadbird.dev/cry/" + usefulMsg).read()
+        cryRequest = urllib.request.urlopen(
+            "https://api.apcry.deadbird.dev/cry/" + usefulMsg).read()
         cryOutput = json.loads(cryRequest)
         await message.channel.send(cryOutput['tears'])
 
@@ -54,11 +57,10 @@ async def on_message(message):
 
     elif message.content.startswith('.yt '):
         usefulMsg = message.content[5:]
-        ytRequest = urllib.request.urlopen("https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=" + usefulMsg + "&key=" + youtubeToken).read()
+        ytRequest = urllib.request.urlopen(
+            "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=" + usefulMsg + "&key=" + youtubeToken).read()
         ytOutput = json.loads(ytRequest)
         await message.channel.send("https://youtube.com/watch?v=" + ytOutput['items'][0]['id']['videoId'])
 
 
 client.run(discordToken)
-
-
