@@ -3,14 +3,19 @@
 
 import os
 import discord
-from owotrans import owo
 import argparse
 import urllib.request
 import json
 import rps
+from owotrans import owo
 
-parser = argparse.ArgumentParser()
-parser.add_argument("token", help="Discord bot token.")
+#parser = argparse.ArgumentParser()
+#parser.add_argument("token", help="Discord bot token.")
+
+tokenFile = open("tokens.json", "r")
+tokenLoad = json.load(tokenFile)
+discordToken = tokenLoad['discordToken']
+youtubeToken = tokenLoad['youtubeToken']
 
 client = discord.Client()
 
@@ -48,7 +53,6 @@ async def on_message(message):
             await message.channel.send("Input error, please try again.")
 
 
-
-client.run(parser.parse_args().token)
+client.run(discordToken)
 
 
