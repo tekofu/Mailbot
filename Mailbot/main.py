@@ -56,7 +56,7 @@ async def on_message(message):
             await message.channel.send("Input error, please try again.")
 
     elif message.content.startswith('.yt '):
-        usefulMsg = message.content[5:]
+        usefulMsg = message.content[5:].replace(' ', '%20')
         ytRequest = urllib.request.urlopen(
             "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=" + usefulMsg + "&key=" + youtubeToken).read()
         ytOutput = json.loads(ytRequest)
