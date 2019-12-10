@@ -7,7 +7,7 @@ import argparse
 import urllib.request
 import json
 import rps
-from owotrans import owo
+import owo
 
 #parser = argparse.ArgumentParser()
 #parser.add_argument("token", help="Discord bot token.")
@@ -31,7 +31,7 @@ async def on_message(message):
         return
 
     if message.content.startswith('.owo '):
-        await message.channel.send(owo(message.content[5:]))
+        await message.channel.send(owo.owo(message.content[5:]))
 
     # uhhh
     # elif message.content.upper.startswith('GOODNIGHT RYAN'):

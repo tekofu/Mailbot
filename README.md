@@ -7,5 +7,4 @@ A discord bot written in python with the following features:
 
 TODO:
 - Image manipulation
-- Improve owo by porting https://github.com/zuzak/owo
 - Better documentation for setup and use
