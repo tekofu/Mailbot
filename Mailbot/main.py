@@ -9,9 +9,6 @@ import json
 import rps
 import owo
 
-#parser = argparse.ArgumentParser()
-#parser.add_argument("token", help="Discord bot token.")
-
 tokenFile = open("tokens.json", "r")
 tokenLoad = json.load(tokenFile)
 discordToken = tokenLoad['discordToken']
@@ -33,9 +30,8 @@ async def on_message(message):
     if message.content.startswith('.owo '):
         await message.channel.send(owo.owo(message.content[5:]))
 
-    # uhhh
-    # elif message.content.upper.startswith('GOODNIGHT RYAN'):
-    #   await message.channel.send("Goodnight Ryan!")
+    elif 'GOODNIGHT RYAN' in message.content.upper():
+        await message.channel.send("Goodnight Ryan!")
 
     elif message.content.startswith('.cry '):
         usefulMsg = message.content[5:].replace(' ', '%20')
