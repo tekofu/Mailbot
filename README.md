@@ -6,4 +6,6 @@ A discord bot written in python with the following features:
 - Search for YouTube videos
 
 TODO:
-- Clean up code
+- Image manipulation
+- Improve owo by porting https://github.com/zuzak/owo
+- Better documentation for setup and use
