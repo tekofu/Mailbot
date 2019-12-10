@@ -96,7 +96,6 @@ def owo(owoInput):
     owoInput = owoInput.replace('L', 'w')
     owoInput = owoInput.replace('r', 'w')
     owoInput = owoInput.replace('R', 'w')
-    
 
     owoOutput = prefChoice + owoInput + suffChoice
 

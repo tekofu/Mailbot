@@ -8,3 +8,4 @@ A discord bot written in python with the following features:
 TODO:
 - Image manipulation
 - Better documentation for setup and use
+- Allow for combination of string manipulation commands (and remove ".crowo")

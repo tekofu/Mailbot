@@ -40,6 +40,14 @@ async def on_message(message):
         cryOutput = json.loads(cryRequest)
         await message.channel.send(cryOutput['tears'])
 
+    elif message.content.startswith('.crowo '):
+        usefulMsg = message.content[7:].replace(' ', '%20')
+        cryRequest = urllib.request.urlopen(
+            "https://api.apcry.deadbird.dev/cry/" + usefulMsg).read()
+        cryOutput = json.loads(cryRequest)
+        combOutput = owo.owo(cryOutput['tears'])
+        await message.channel.send(combOutput)
+
     elif message.content.startswith('.rps '):
         usefulMsg = message.content[5:].upper()
         playerChoice = rps.inputOption(usefulMsg)
