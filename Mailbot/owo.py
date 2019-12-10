@@ -92,6 +92,12 @@ def owo(owoInput):
     prefChoice = random.choice(owoPrefix)
     suffChoice = random.choice(owoSuffix)
 
+    owoInput = owoInput.replace('l', 'w')
+    owoInput = owoInput.replace('L', 'w')
+    owoInput = owoInput.replace('r', 'w')
+    owoInput = owoInput.replace('R', 'w')
+    
+
     owoOutput = prefChoice + owoInput + suffChoice
 
     return owoOutput
