@@ -9,3 +9,4 @@ TODO:
 - Image manipulation
 - Better documentation for setup and use
 - Allow for combination of string manipulation commands (and remove ".crowo")
+- Port cry functionality from [original source](https://github.com/dead-bird/apcry/blob/master/api/cry.js) as it is now down

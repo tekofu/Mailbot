@@ -33,6 +33,7 @@ async def on_message(message):
     elif 'GOODNIGHT RYAN' in message.content.upper():
         await message.channel.send("Goodnight Ryan!")
 
+    # Site down as of 25/03/20. Can port https://github.com/dead-bird/apcry/blob/master/api/cry.js
     elif message.content.startswith('.cry '):
         usefulMsg = message.content[5:].replace(' ', '%20')
         cryRequest = urllib.request.urlopen(
