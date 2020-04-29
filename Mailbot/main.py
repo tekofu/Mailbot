@@ -9,6 +9,7 @@ import json
 import rps
 import owo
 import cry
+import random
 
 tokenFile = open("tokens.json", "r")
 tokenLoad = json.load(tokenFile)
@@ -63,6 +64,31 @@ async def on_message(message):
             "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&type=video&q=" + usefulMsg + "&key=" + youtubeToken).read()
         ytOutput = json.loads(ytRequest)
         await message.channel.send("https://youtube.com/watch?v=" + ytOutput['items'][0]['id']['videoId'])
+
+    elif message.content.startswith('.8ball '):
+        ballList = [
+            'It is certain.',
+            'It is decidedly so.',
+            'Without a doubt.',
+            'Yes – definitely.',
+            'You may rely on it.',
+            'As I see it, yes.',
+            'Most likely.',
+            'Outlook good.',
+            'Yes.',
+            'Signs point to yes.',
+            'Reply hazy, try again.',
+            'Ask again later.',
+            'Better not tell you now.',
+            'Cannot predict now.',
+            'Concentrate and ask again.',
+            'Don\'t count on it.',
+            'My reply is no.',
+            'My sources say no.',
+            'Outlook not so good.',
+            'Very doubtful.'
+        ]
+        await message.channel.send(random.choice(ballList))
 
 
 client.run(discordToken)
