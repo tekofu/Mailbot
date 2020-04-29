@@ -5,6 +5,7 @@ A discord bot written in python with the following features:
 - Play Rock, Paper, Scissors with the bot
 - Search for YouTube videos
 - Magic 8-Ball responses
+- Random bonequest comics
 
 TODO:
 - Image manipulation

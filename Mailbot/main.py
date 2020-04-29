@@ -90,5 +90,9 @@ async def on_message(message):
         ]
         await message.channel.send(random.choice(ballList))
 
+    elif message.content.startswith('.jerk'):
+        comicNum = str(random.randrange(1, 7700))
+        await message.channel.send("https://www.bonequest.com/" + comicNum + ".gif")
+
 
 client.run(discordToken)
