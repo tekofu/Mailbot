@@ -42,7 +42,7 @@ async def on_message(message):
 
     elif message.content.startswith('.crowo '):
         usefulMsg = message.content[7:]
-        cryOutput = cry.cry(message.content)
+        cryOutput = cry.cry(usefulMsg)
         combOutput = owo.owo(cryOutput)
         await message.channel.send(combOutput)
 
