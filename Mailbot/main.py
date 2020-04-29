@@ -8,6 +8,7 @@ import urllib.request
 import json
 import rps
 import owo
+import cry
 
 tokenFile = open("tokens.json", "r")
 tokenLoad = json.load(tokenFile)
@@ -36,20 +37,13 @@ async def on_message(message):
     elif message.content.startswith('ay'):
         await message.channel.send("I can fly!")
 
-    # Site down as of 25/03/20. Can port https://github.com/dead-bird/apcry/blob/master/api/cry.js
     elif message.content.startswith('.cry '):
-        usefulMsg = message.content[5:].replace(' ', '%20')
-        cryRequest = urllib.request.urlopen(
-            "https://api.apcry.deadbird.dev/cry/" + usefulMsg).read()
-        cryOutput = json.loads(cryRequest)
-        await message.channel.send(cryOutput['tears'])
+        await message.channel.send(cry.cry(message.content[5:]))
 
     elif message.content.startswith('.crowo '):
-        usefulMsg = message.content[7:].replace(' ', '%20')
-        cryRequest = urllib.request.urlopen(
-            "https://api.apcry.deadbird.dev/cry/" + usefulMsg).read()
-        cryOutput = json.loads(cryRequest)
-        combOutput = owo.owo(cryOutput['tears'])
+        usefulMsg = message.content[7:]
+        cryOutput = cry.cry(message.content)
+        combOutput = owo.owo(cryOutput)
         await message.channel.send(combOutput)
 
     elif message.content.startswith('.rps '):
