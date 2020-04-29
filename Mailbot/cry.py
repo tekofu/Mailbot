@@ -29,8 +29,6 @@ import re
 import random
 import math
 
-cryInput = "this is a sentence that i'm testing out"
-
 
 def cry(cryInput):
     words = cryInput.lower()
@@ -43,14 +41,17 @@ def cry(cryInput):
         x = x + item
     return x
 
+
 def rStrip(match):
     newRepl = match.group(0)[:-1]
     return newRepl
+
 
 def chanceCheck(value):
     randomNum = random.random()
     chance = value >= randomNum
     return chance
+
 
 def charPass(index, char):
     # Apostrophe -> semi-colon
@@ -70,8 +71,8 @@ def charPass(index, char):
         char = randChar(char)
     # Add up to 3 random puncuations
     if chanceCheck(0.74):
-        #for i in random.randrange(1, 3):
-        char = char + ",, .;"[random.randrange(0,4)]
+        # for i in random.randrange(1, 3):
+        char = char + ",, .;"[random.randrange(0, 4)]
     # Clone character
     if chanceCheck(0.89):
         char = char + char
@@ -79,6 +80,7 @@ def charPass(index, char):
     # Delecte character
     if chanceCheck(0.99):
         return ""
+
 
 def randChar(char):
     dict = "abcdefghijklmnopqrstuvwxyz,/'[]\\`"
