@@ -102,7 +102,8 @@ async def on_message(message):
             \n**.crowo** *[text]* - owo and cry-ify the text\
             \n**.rps** *[rock/scissors/paper]* - Play Rock Paper Scissors with the bot\
             \n**.8ball** *[Yes/No Question]* - Ask the bot a Magic 8-Ball question\
-            \n**.jerk** - Posts a random Bonequest comic")
+            \n**.jerk** - Posts a random Bonequest comic\
+            \n**.yt** *[query]* - Searches YouTube and posts the first result")
 
 
 client.run(discordToken)
