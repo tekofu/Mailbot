@@ -94,5 +94,15 @@ async def on_message(message):
         comicNum = str(random.randrange(1, 7700))
         await message.channel.send("https://www.bonequest.com/" + comicNum + ".gif")
 
+    elif message.content.startswith('.help'):
+        await message.channel.send("\
+            Hi! Here's the help menu:\
+            \n**.owo** *[text]* - owo-ify the text\
+            \n**.cry** *[text]* - cry-ify the text\
+            \n**.crowo** *[text]* - owo and cry-ify the text\
+            \n**.rps** *[rock/scissors/paper]* - Play Rock Paper Scissors with the bot\
+            \n**.8ball** *[Yes/No Question]* - Ask the bot a Magic 8-Ball question\
+            \n**.jerk** - Posts a random Bonequest comic")
+
 
 client.run(discordToken)
