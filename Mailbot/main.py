@@ -3,6 +3,7 @@
 
 import os
 import discord
+from discord.ext import commands
 import argparse
 import urllib.request
 import json
@@ -15,95 +16,99 @@ tokenFile = open("tokens.json", "r")
 tokenLoad = json.load(tokenFile)
 discordToken = tokenLoad['discordToken']
 youtubeToken = tokenLoad['youtubeToken']
-
-client = discord.Client()
-
-
-@client.event
-async def on_ready():
-    print('Now logged in as {0.user}'.format(client))
+description = 'A bad discord robot for the Mailroom'
 
 
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
+class Mailbot(commands.Bot):
+    async def on_ready(self):
+        print('Now logged in as {0.user}'.format(bot))
 
-    if message.content.startswith('.owo '):
-        await message.channel.send(owo.owo(message.content[5:]))
+    async def on_message(self, message):
+        if message.author == bot.user:
+            return
 
-    elif 'GOODNIGHT RYAN' in message.content.upper():
-        await message.channel.send("Goodnight Ryan!")
+        elif 'GOODNIGHT RYAN' in message.content.upper():
+            await message.channel.send("Goodnight Ryan!")
 
-    elif message.content.startswith('ay'):
-        await message.channel.send("I can fly!")
+        elif message.content.startswith('ay'):
+            await message.channel.send("I can fly!")
 
-    elif message.content.startswith('.cry '):
-        await message.channel.send(cry.cry(message.content[5:]))
-
-    elif message.content.startswith('.crowo '):
-        usefulMsg = message.content[7:]
-        cryOutput = cry.cry(usefulMsg)
-        combOutput = owo.owo(cryOutput)
-        await message.channel.send(combOutput)
-
-    elif message.content.startswith('.rps '):
-        usefulMsg = message.content[5:].upper()
-        playerChoice = rps.inputOption(usefulMsg)
-        if playerChoice != None:
-            compChoice = rps.compChoice()
-            winningCond = rps.calculateWinner(playerChoice, compChoice)
-            rpsOutput = rps.finalMessage(playerChoice, compChoice, winningCond)
-            await message.channel.send(rpsOutput)
-        else:
-            await message.channel.send("Input error, please try again.")
-
-    elif message.content.startswith('.yt '):
-        usefulMsg = message.content[4:].replace(' ', '%20')
-        ytRequest = urllib.request.urlopen(
-            "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&type=video&q=" + usefulMsg + "&key=" + youtubeToken).read()
-        ytOutput = json.loads(ytRequest)
-        await message.channel.send("https://youtube.com/watch?v=" + ytOutput['items'][0]['id']['videoId'])
-
-    elif message.content.startswith('.8ball '):
-        ballList = [
-            'It is certain.',
-            'It is decidedly so.',
-            'Without a doubt.',
-            'Yes – definitely.',
-            'You may rely on it.',
-            'As I see it, yes.',
-            'Most likely.',
-            'Outlook good.',
-            'Yes.',
-            'Signs point to yes.',
-            'Reply hazy, try again.',
-            'Ask again later.',
-            'Better not tell you now.',
-            'Cannot predict now.',
-            'Concentrate and ask again.',
-            'Don\'t count on it.',
-            'My reply is no.',
-            'My sources say no.',
-            'Outlook not so good.',
-            'Very doubtful.'
-        ]
-        await message.channel.send(random.choice(ballList))
-
-    elif message.content.startswith('.jerk'):
-        comicNum = str(random.randrange(1, 7700))
-        await message.channel.send("https://www.bonequest.com/" + comicNum + ".gif")
-
-    elif message.content.startswith('.help'):
-        await message.channel.send("\
-            Hi! Here's the help menu:\
-            \n**.owo** *[text]* - owo-ify the text\
-            \n**.cry** *[text]* - cry-ify the text\
-            \n**.crowo** *[text]* - owo and cry-ify the text\
-            \n**.rps** *[rock/scissors/paper]* - Play Rock Paper Scissors with the bot\
-            \n**.8ball** *[Yes/No Question]* - Ask the bot a Magic 8-Ball question\
-            \n**.jerk** - Posts a random Bonequest comic\
-            \n**.yt** *[query]* - Searches YouTube and posts the first result")
+        await bot.process_commands(message)
 
 
-client.run(discordToken)
+bot = Mailbot(command_prefix='.', description=description)
+
+
+@bot.command(name='owo')
+async def owoCom(ctx, *, content):
+    await ctx.send(owo.owo(content))
+
+
+@bot.command(name='cry')
+async def cryCom(ctx, *, content):
+    await ctx.send(cry.cry(content))
+
+
+@bot.command()
+async def crowo(ctx, *, content):
+    cryOutput = cry.cry(content)
+    combOutput = owo.owo(cryOutput)
+    await ctx.send(cry.cry(combOutput))
+
+
+@bot.command(name='rps')
+async def rpsCom(ctx, content):
+    usefulMsg = content.upper()
+    playerChoice = rps.inputOption(usefulMsg)
+    if playerChoice != None:
+        compChoice = rps.compChoice()
+        winningCond = rps.calculateWinner(playerChoice, compChoice)
+        rpsOutput = rps.finalMessage(playerChoice, compChoice, winningCond)
+        await ctx.send(rpsOutput)
+    else:
+        await ctx.send("Input error, please try again.")
+
+
+@bot.command(name='8ball')
+async def eightBall(ctx, *, content):
+    ballList = [
+        'It is certain.',
+        'It is decidedly so.',
+        'Without a doubt.',
+        'Yes – definitely.',
+        'You may rely on it.',
+        'As I see it, yes.',
+        'Most likely.',
+        'Outlook good.',
+        'Yes.',
+        'Signs point to yes.',
+        'Reply hazy, try again.',
+        'Ask again later.',
+        'Better not tell you now.',
+        'Cannot predict now.',
+        'Concentrate and ask again.',
+        'Don\'t count on it.',
+        'My reply is no.',
+        'My sources say no.',
+        'Outlook not so good.',
+        'Very doubtful.'
+    ]
+    await ctx.send(random.choice(ballList))
+
+
+@bot.command()
+async def jerk(ctx):
+    comicNum = str(random.randrange(1, 7700))
+    await ctx.send("https://www.bonequest.com/" + comicNum + ".gif")
+
+
+@bot.command()
+async def yt(ctx, *, content):
+    usefulMsg = content.replace(' ', '%20')
+    ytRequest = urllib.request.urlopen(
+        "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&type=video&q=" + usefulMsg + "&key=" + youtubeToken).read()
+    ytOutput = json.loads(ytRequest)
+    await ctx.send("https://youtube.com/watch?v=" + ytOutput['items'][0]['id']['videoId'])
+
+
+bot.run(discordToken)
