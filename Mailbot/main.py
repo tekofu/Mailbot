@@ -12,10 +12,11 @@ import owo
 import cry
 import random
 
-tokenFile = open("tokens.json", "r")
+tokenFile = open("config.json", "r")
 tokenLoad = json.load(tokenFile)
 discordToken = tokenLoad['discordToken']
 youtubeToken = tokenLoad['youtubeToken']
+boardId = int(tokenLoad['starboardId'])
 description = 'A bad discord robot for the Mailroom'
 
 
@@ -34,6 +35,39 @@ class Mailbot(commands.Bot):
             await message.channel.send("I can fly!")
 
         await bot.process_commands(message)
+
+    async def on_raw_reaction_add(self, payload):
+        starEmoji = '\N{WHITE MEDIUM STAR}'
+
+        if str(payload.emoji) != starEmoji:
+            return
+
+        channel = bot.get_channel(payload.channel_id)
+
+        starMessage = await channel.fetch_message(payload.message_id)
+
+        embed = discord.Embed(description=starMessage.content)
+        if starMessage.embeds:
+            data = starMessage.embeds[0]
+            if data.type == 'image':
+                embed.set_image(url=data.url)
+
+        if starMessage.attachments:
+            file = starMessage.attachments[0]
+            if file.url.lower().endswith(('png', 'jpeg', 'jpg', 'gif', 'webp')):
+                embed.set_image(url=file.url)
+            else:
+                embed.add_field(
+                    name='Attachment', value=f'[{file.filename}]({file.url})', inline=False)
+
+        embed.add_field(name='Original',
+                        value=f'[Jump!]({starMessage.jump_url})', inline=False)
+        embed.set_author(name=starMessage.author.display_name,
+                         icon_url=starMessage.author.avatar_url_as(format='png'))
+        embed.timestamp = starMessage.created_at
+
+        channel = bot.get_channel(boardId)
+        await channel.send(embed=embed)
 
 
 bot = Mailbot(command_prefix='.', description=description)
