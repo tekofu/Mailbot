@@ -15,3 +15,4 @@ TODO:
 - More dumb joke features
 - Allow pinning of posts via emoji to a dedicated channel
 - Implement logging
+- Swap urllib with aiohttp
