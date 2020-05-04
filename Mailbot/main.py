@@ -39,26 +39,26 @@ class Mailbot(commands.Bot):
 bot = Mailbot(command_prefix='.', description=description)
 
 
-@bot.command(name='owo')
-async def owoCom(ctx, *, content):
-    await ctx.send(owo.owo(content))
+@bot.command(name='owo', description='owo-ify the text')
+async def owoCom(ctx, *, text):
+    await ctx.send(owo.owo(text))
 
 
-@bot.command(name='cry')
-async def cryCom(ctx, *, content):
-    await ctx.send(cry.cry(content))
+@bot.command(name='cry', description='cry-ify the text')
+async def cryCom(ctx, *, text):
+    await ctx.send(cry.cry(text))
 
 
-@bot.command()
-async def crowo(ctx, *, content):
-    cryOutput = cry.cry(content)
+@bot.command(description='owo *and* cry-ify the text')
+async def crowo(ctx, *, text):
+    cryOutput = cry.cry(text)
     combOutput = owo.owo(cryOutput)
     await ctx.send(cry.cry(combOutput))
 
 
-@bot.command(name='rps')
-async def rpsCom(ctx, content):
-    usefulMsg = content.upper()
+@bot.command(name='rps', description='Play Rock paper scissors with the bot')
+async def rpsCom(ctx, choice):
+    usefulMsg = choice.upper()
     playerChoice = rps.inputOption(usefulMsg)
     if playerChoice != None:
         compChoice = rps.compChoice()
@@ -69,8 +69,8 @@ async def rpsCom(ctx, content):
         await ctx.send("Input error, please try again.")
 
 
-@bot.command(name='8ball')
-async def eightBall(ctx, *, content):
+@bot.command(name='8ball', description='Ask the bot a Magic 8-Ball question')
+async def eightBall(ctx, *, question):
     ballList = [
         'It is certain.',
         'It is decidedly so.',
@@ -96,15 +96,15 @@ async def eightBall(ctx, *, content):
     await ctx.send(random.choice(ballList))
 
 
-@bot.command()
+@bot.command(description='Posts a random Bonequest comic')
 async def jerk(ctx):
     comicNum = str(random.randrange(1, 7700))
     await ctx.send("https://www.bonequest.com/" + comicNum + ".gif")
 
 
-@bot.command()
-async def yt(ctx, *, content):
-    usefulMsg = content.replace(' ', '%20')
+@bot.command(description='Searches YouTube and posts the first result')
+async def yt(ctx, *, query):
+    usefulMsg = query.replace(' ', '%20')
     ytRequest = urllib.request.urlopen(
         "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&type=video&q=" + usefulMsg + "&key=" + youtubeToken).read()
     ytOutput = json.loads(ytRequest)
