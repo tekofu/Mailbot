@@ -6,6 +6,7 @@ A discord bot written in python with the following features:
 - Search for YouTube videos
 - Magic 8-Ball responses
 - Random bonequest comics
+- Self pinning to a dedicated channel
 
 TODO:
 - Image manipulation
