@@ -4,6 +4,7 @@ import random
 import owo
 import cry
 import rps
+import aiohttp
 
 
 class Funnies(commands.Cog):
@@ -89,6 +90,16 @@ class Funnies(commands.Cog):
         """Posts a random Bonequest comic"""
         comicNum = str(random.randrange(1, 7700))
         await ctx.send("https://www.bonequest.com/" + comicNum + ".gif")
+
+    @commands.command()
+    async def cat(self, ctx):
+        """Gives you a random cat."""
+        async with aiohttp.ClientSession() as session:
+            async with session.get('http://aws.random.cat/meow') as req:
+                if req.status != 200:
+                    await ctx.send("Something went wrong :(")
+                reply = await req.json()
+                await ctx.send(embed=discord.Embed(title='Look at this random cat!').set_image(url=reply['file']))
 
 
 def setup(bot):
