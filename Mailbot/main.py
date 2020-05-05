@@ -70,27 +70,27 @@ class Mailbot(commands.Bot):
         await channel.send(embed=embed)
 
 
-bot = Mailbot(command_prefix='.', description=description)
+bot = Mailbot(command_prefix = '.', description = description)
 
 
-@bot.command(name='owo', description='owo-ify the text')
+@bot.command(name='owo', description = 'owo-ify the text')
 async def owoCom(ctx, *, text):
     await ctx.send(owo.owo(text))
 
 
-@bot.command(name='cry', description='cry-ify the text')
+@bot.command(name='cry', description = 'cry-ify the text')
 async def cryCom(ctx, *, text):
     await ctx.send(cry.cry(text))
 
 
-@bot.command(description='owo *and* cry-ify the text')
+@bot.command(description = 'owo *and* cry-ify the text')
 async def crowo(ctx, *, text):
     cryOutput = cry.cry(text)
     combOutput = owo.owo(cryOutput)
     await ctx.send(cry.cry(combOutput))
 
 
-@bot.command()
+@bot.command(description = 'Roll a dice in the format ***N***d***N***')
 async def roll(ctx, dice:str):
     try:
         rolls, limit = map(int, dice.split('d'))
@@ -102,7 +102,7 @@ async def roll(ctx, dice:str):
     await ctx.send(result)
 
 
-@bot.command(name='rps', description='Play Rock paper scissors with the bot')
+@bot.command(name='rps', description = 'Play Rock paper scissors with the bot')
 async def rpsCom(ctx, choice):
     usefulMsg = choice.upper()
     playerChoice = rps.inputOption(usefulMsg)
@@ -115,7 +115,7 @@ async def rpsCom(ctx, choice):
         await ctx.send("Input error, please try again.")
 
 
-@bot.command(name='8ball', description='Ask the bot a Magic 8-Ball question')
+@bot.command(name='8ball', description = 'Ask the bot a Magic 8-Ball question')
 async def eightBall(ctx, *, question):
     ballList = [
         'It is certain.',
@@ -142,13 +142,13 @@ async def eightBall(ctx, *, question):
     await ctx.send(random.choice(ballList))
 
 
-@bot.command(description='Posts a random Bonequest comic')
+@bot.command(description = 'Posts a random Bonequest comic')
 async def jerk(ctx):
     comicNum = str(random.randrange(1, 7700))
     await ctx.send("https://www.bonequest.com/" + comicNum + ".gif")
 
 
-@bot.command(description='Searches YouTube and posts the first result')
+@bot.command(description = 'Searches YouTube and posts the first result')
 async def yt(ctx, *, query):
     usefulMsg = query.replace(' ', '%20')
     ytRequest = urllib.request.urlopen(
