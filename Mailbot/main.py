@@ -102,6 +102,11 @@ async def roll(ctx, dice:str):
     await ctx.send(result)
 
 
+@bot.command(description = 'Choose between two options')
+async def choose(ctx, *choices: str):
+    await ctx.send(random.choice(choices))
+
+
 @bot.command(name='rps', description = 'Play Rock paper scissors with the bot')
 async def rpsCom(ctx, choice):
     usefulMsg = choice.upper()
