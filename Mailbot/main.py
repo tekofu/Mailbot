@@ -73,25 +73,29 @@ class Mailbot(commands.Bot):
 bot = Mailbot(command_prefix='.', description=description)
 
 
-@bot.command(name='owo', description='owo-ify the text')
+@bot.command(name='owo')
 async def owoCom(ctx, *, text):
+    """owo-ify the text"""
     await ctx.send(owo.owo(text))
 
 
-@bot.command(name='cry', description='cry-ify the text')
+@bot.command(name='cry')
 async def cryCom(ctx, *, text):
+    """cry-ify the text"""
     await ctx.send(cry.cry(text))
 
 
-@bot.command(description='owo *and* cry-ify the text')
+@bot.command()
 async def crowo(ctx, *, text):
+    """owo and cry-ify the text"""
     cryOutput = cry.cry(text)
     combOutput = owo.owo(cryOutput)
     await ctx.send(cry.cry(combOutput))
 
 
-@bot.command(description='Roll a dice in the format ***N***d***N***')
+@bot.command()
 async def roll(ctx, dice: str):
+    """Roll a dice in the format NdN"""
     try:
         rolls, limit = map(int, dice.split('d'))
     except Exception:
@@ -102,13 +106,15 @@ async def roll(ctx, dice: str):
     await ctx.send(result)
 
 
-@bot.command(description='Choose between two options')
+@bot.command()
 async def choose(ctx, *choices: str):
+    """Choose between multiple options, separated with spaces"""
     await ctx.send(random.choice(choices))
 
 
-@bot.command(name='rps', description='Play Rock paper scissors with the bot')
+@bot.command(name='rps')
 async def rpsCom(ctx, choice):
+    """Play Rock paper scissors with the bot"""
     usefulMsg = choice.upper()
     playerChoice = rps.inputOption(usefulMsg)
     if playerChoice != None:
@@ -120,8 +126,9 @@ async def rpsCom(ctx, choice):
         await ctx.send("Input error, please try again.")
 
 
-@bot.command(name='8ball', description='Ask the bot a Magic 8-Ball question')
+@bot.command(name='8ball')
 async def eightBall(ctx, *, question):
+    """Ask the bot a Magic 8-Ball question"""
     ballList = [
         'It is certain.',
         'It is decidedly so.',
@@ -147,14 +154,16 @@ async def eightBall(ctx, *, question):
     await ctx.send(random.choice(ballList))
 
 
-@bot.command(description='Posts a random Bonequest comic')
+@bot.command()
 async def jerk(ctx):
+    """Posts a random Bonequest comic"""
     comicNum = str(random.randrange(1, 7700))
     await ctx.send("https://www.bonequest.com/" + comicNum + ".gif")
 
 
-@bot.command(description='Searches YouTube and posts the first result')
+@bot.command()
 async def yt(ctx, *, query):
+    """Searches YouTube and posts the first result"""
     usefulMsg = query.replace(' ', '%20')
     ytRequest = urllib.request.urlopen(
         "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&type=video&q=" + usefulMsg + "&key=" + youtubeToken).read()
