@@ -16,4 +16,3 @@ TODO:
 - More dumb joke features
 - Implement logging
 - Swap urllib with aiohttp
-- Switch to using Cogs
