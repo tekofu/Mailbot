@@ -101,6 +101,21 @@ class Funnies(commands.Cog):
                 reply = await req.json()
                 await ctx.send(embed=discord.Embed(title='Look at this random cat!').set_image(url=reply['file']))
 
+    @commands.command()
+    async def dog(self, ctx):
+        """Gives you a random dog."""
+        async with aiohttp.ClientSession() as session:
+            replyImage = 0
+            while replyImage == 0:
+                async with session.get('https://random.dog/woof') as req:
+                    if req.status != 200:
+                        await ctx.send("Something went wrong :(")
+                    filename = await req.text()
+                    url = f'https://random.dog/{filename}'
+                    if filename.endswith(('.mp4', '.webm')) != True:
+                        replyImage = 1
+            await ctx.send(embed=discord.Embed(title='Look at this random dog!').set_image(url=url))
+
 
 def setup(bot):
     bot.add_cog(Funnies(bot))
