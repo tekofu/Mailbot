@@ -42,7 +42,6 @@ class Mailbot(commands.Bot):
             return
 
         if str(payload.message_id) in self.starCache:
-            print("it's in there!")
             return
 
         channel = bot.get_channel(payload.channel_id)
@@ -71,8 +70,6 @@ class Mailbot(commands.Bot):
 
         channel = bot.get_channel(boardId)
         self.starCache.append(str(payload.message_id))
-        print(self.starCache)
-        print(len(self.starCache))
 
         if len(self.starCache) == 20:
             self.starCache.pop(0)
