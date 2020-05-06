@@ -21,7 +21,6 @@ class Mailbot(commands.Bot):
     async def on_ready(self):
         print('Now logged in as {0.user}'.format(bot))
         funnies.setup(self)
-        self.starCache = []
 
     async def on_message(self, message):
         if message.author == bot.user:
@@ -41,12 +40,17 @@ class Mailbot(commands.Bot):
         if str(payload.emoji) != starEmoji:
             return
 
-        if str(payload.message_id) in self.starCache:
-            return
-
         channel = bot.get_channel(payload.channel_id)
-
         starMessage = await channel.fetch_message(payload.message_id)
+
+        msgReactions = starMessage.reactions
+
+        for reaction in msgReactions:
+            if reaction.emoji == starEmoji:
+                starCount = reaction.count
+
+        if starCount != 1:
+            return
 
         embed = discord.Embed(description=starMessage.content)
         if starMessage.embeds:
@@ -68,13 +72,9 @@ class Mailbot(commands.Bot):
                          icon_url=starMessage.author.avatar_url_as(format='png'))
         embed.timestamp = starMessage.created_at
 
-        channel = bot.get_channel(boardId)
-        self.starCache.append(str(payload.message_id))
+        boardChannel = bot.get_channel(boardId)
 
-        if len(self.starCache) == 20:
-            self.starCache.pop(0)
-
-        await channel.send(embed=embed)
+        await boardChannel.send(embed=embed)
 
 
 bot = Mailbot(command_prefix='.', description=description)
