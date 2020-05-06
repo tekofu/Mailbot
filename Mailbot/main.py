@@ -21,6 +21,7 @@ class Mailbot(commands.Bot):
     async def on_ready(self):
         print('Now logged in as {0.user}'.format(bot))
         funnies.setup(self)
+        self.starCache = []
 
     async def on_message(self, message):
         if message.author == bot.user:
@@ -38,6 +39,10 @@ class Mailbot(commands.Bot):
         starEmoji = '\N{WHITE MEDIUM STAR}'
 
         if str(payload.emoji) != starEmoji:
+            return
+
+        if str(payload.message_id) in self.starCache:
+            print("it's in there!")
             return
 
         channel = bot.get_channel(payload.channel_id)
@@ -65,6 +70,13 @@ class Mailbot(commands.Bot):
         embed.timestamp = starMessage.created_at
 
         channel = bot.get_channel(boardId)
+        self.starCache.append(str(payload.message_id))
+        print(self.starCache)
+        print(len(self.starCache))
+
+        if len(self.starCache) == 20:
+            self.starCache.pop(0)
+
         await channel.send(embed=embed)
 
 
