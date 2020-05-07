@@ -88,7 +88,13 @@ class Funnies(commands.Cog):
     @commands.command()
     async def jerk(self, ctx):
         """Posts a random Bonequest comic"""
-        comicNum = str(random.randrange(1, 7700))
+        async with aiohttp.ClientSession() as session:
+            async with session.get('https://bonequest.com/index.json') as req:
+                if req.status != 200:
+                    await ctx.send("Something went wrong :(")
+                comicIndex = await req.json()
+
+        comicNum = str(random.randrange(1, comicIndex['episodes'][0]['episode']))
         await ctx.send("https://www.bonequest.com/" + comicNum + ".gif")
 
     @commands.command()
