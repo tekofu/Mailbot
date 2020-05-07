@@ -130,6 +130,18 @@ class Funnies(commands.Cog):
                 url = f'https://random.dog/{filename}'
             await ctx.send(embed=discord.Embed(title='Look at this random dog!').set_image(url=url))
 
+    @commands.command()
+    async def frog(self, ctx):
+        """Gives you a random frog tip."""
+        async with aiohttp.ClientSession() as session:
+            async with session.get('http://frog.tips/api/1/tips') as req:
+                if req.status != 200:
+                    await ctx.send("Something went wrong :(")
+                frogCroak = await req.json()
+            frogNum = str(frogCroak['tips'][0]['number'])
+            frogTip = frogCroak['tips'][0]['tip']
+            await ctx.send('**Frog tip #' + frogNum + '**' + '\n' + frogTip)
+
 
 def setup(bot):
     bot.add_cog(Funnies(bot))
