@@ -86,7 +86,7 @@ async def yt(ctx, *, query):
     usefulMsg = query.replace(' ', '%20')
     async with aiohttp.ClientSession() as session:
         async with session.get(
-            'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&type=video&q=' + \
+            'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&type=video&q=' +
                 usefulMsg + '&key=' + youtubeToken) as req:
             if req.status != 200:
                 await ctx.send("Something went wrong :(")

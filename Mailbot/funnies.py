@@ -95,7 +95,8 @@ class Funnies(commands.Cog):
                         await ctx.send("Something went wrong :(")
                     comicIndex = await req.json()
 
-            comicNum = str(random.randrange(1, comicIndex['episodes'][0]['episode']))
+            comicNum = str(random.randrange(
+                1, comicIndex['episodes'][0]['episode']))
             await ctx.send("https://www.bonequest.com/" + comicNum + ".gif")
         else:
             query = '+'.join(query)
@@ -106,7 +107,7 @@ class Funnies(commands.Cog):
                     searchIndex = await req.json()
 
             comicNum = str(searchIndex[0]['episode'])
-            await ctx.send("https://www.bonequest.com/" + comicNum + ".gif")       
+            await ctx.send("https://www.bonequest.com/" + comicNum + ".gif")
 
     @commands.command()
     async def cat(self, ctx):
