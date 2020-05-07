@@ -4,7 +4,7 @@
 import os
 import discord
 from discord.ext import commands
-import urllib.request
+import aiohttp
 import json
 import funnies
 
@@ -84,9 +84,14 @@ bot = Mailbot(command_prefix='.', description=description)
 async def yt(ctx, *, query):
     """Searches YouTube and posts the first result"""
     usefulMsg = query.replace(' ', '%20')
-    ytRequest = urllib.request.urlopen(
-        "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&type=video&q=" + usefulMsg + "&key=" + youtubeToken).read()
-    ytOutput = json.loads(ytRequest)
+    async with aiohttp.ClientSession() as session:
+        async with session.get(
+            'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&type=video&q=' + \
+                usefulMsg + '&key=' + youtubeToken) as req:
+            if req.status != 200:
+                await ctx.send("Something went wrong :(")
+            ytOutput = await req.json()
+
     await ctx.send("https://youtube.com/watch?v=" + ytOutput['items'][0]['id']['videoId'])
 
 
