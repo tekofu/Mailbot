@@ -86,16 +86,27 @@ class Funnies(commands.Cog):
         await ctx.send(random.choice(ballList))
 
     @commands.command()
-    async def jerk(self, ctx):
-        """Posts a random Bonequest comic"""
-        async with aiohttp.ClientSession() as session:
-            async with session.get('https://bonequest.com/index.json') as req:
-                if req.status != 200:
-                    await ctx.send("Something went wrong :(")
-                comicIndex = await req.json()
+    async def jerk(self, ctx, *query):
+        """Posts a random or searched for Bonequest comic"""
+        if len(query) == 0:
+            async with aiohttp.ClientSession() as session:
+                async with session.get('https://bonequest.com/index.json') as req:
+                    if req.status != 200:
+                        await ctx.send("Something went wrong :(")
+                    comicIndex = await req.json()
 
-        comicNum = str(random.randrange(1, comicIndex['episodes'][0]['episode']))
-        await ctx.send("https://www.bonequest.com/" + comicNum + ".gif")
+            comicNum = str(random.randrange(1, comicIndex['episodes'][0]['episode']))
+            await ctx.send("https://www.bonequest.com/" + comicNum + ".gif")
+        else:
+            query = '+'.join(query)
+            async with aiohttp.ClientSession() as session:
+                async with session.get('https://bonequest.com/search/?q=' + query + '&json=json') as req:
+                    if req.status != 200:
+                        await ctx.send("Something went wrong :(")
+                    searchIndex = await req.json()
+
+            comicNum = str(searchIndex[0]['episode'])
+            await ctx.send("https://www.bonequest.com/" + comicNum + ".gif")       
 
     @commands.command()
     async def cat(self, ctx):
