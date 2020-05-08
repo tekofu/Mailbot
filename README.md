@@ -14,7 +14,8 @@ A discord bot written in python with the following features:
 TODO:
 - Image manipulation
 - Better documentation for setup and use
+- Random septapus comic posting
 - Allow for combination of string manipulation commands (and remove ".crowo")
 - Fix cry functionality from [original source](https://github.com/dead-bird/apcry/blob/master/api/cry.js) - just needs the math tweaking and adding swapping characters
 - More dumb joke features
-- Implement logging
+- Implement logging (only if needed)
