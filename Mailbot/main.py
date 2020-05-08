@@ -20,6 +20,7 @@ description = 'A bad discord robot for the Mailroom'
 class Mailbot(commands.Bot):
     async def on_ready(self):
         print('Now logged in as {0.user}'.format(bot))
+        await bot.change_presence(activity=discord.Activity(name='you sleep', type=discord.ActivityType.watching))
         funnies.setup(self)
 
     async def on_message(self, message):
