@@ -15,7 +15,6 @@ class Funnies(commands.Cog):
     async def owoCom(self, ctx, voice, *, text):
         """echos text in different 'voices'"""
         voiceChoice = voice.lower().split('+')
-        print(voiceChoice)
         voiceOutput = text
         if 'owo' in voiceChoice:
             voiceOutput = owo.owo(voiceOutput)
