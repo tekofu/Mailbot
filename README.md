@@ -1,6 +1,6 @@
 # Mailbot
 
-<img src='https://cdn.discordapp.com/avatars/650044532670595115/41c744765c21ac35d1dbec5159de13aa.png?size=128'>
+<img src='https://cdn.discordapp.com/app-icons/650044532670595115/ffb929f824f0927603934d390d7eb72c.png?size=256'>
 
 A discord bot written in python with the following features:
 - OwO-ify messages
