@@ -1,32 +1,27 @@
 import discord
 from discord.ext import commands
 import random
-import owo
-import cry
-import rps
 import aiohttp
+import rps
+from strManip import owo
+from strManip import cry
 
 
 class Funnies(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name='owo')
-    async def owoCom(self, ctx, *, text):
-        """owo-ify the text"""
-        await ctx.send(owo.owo(text))
-
-    @commands.command(name='cry')
-    async def cryCom(self, ctx, *, text):
-        """cry-ify the text"""
-        await ctx.send(cry.cry(text))
-
-    @commands.command()
-    async def crowo(self, ctx, *, text):
-        """owo and cry-ify the text"""
-        cryOutput = cry.cry(text)
-        combOutput = owo.owo(cryOutput)
-        await ctx.send(cry.cry(combOutput))
+    @commands.command(name='say')
+    async def owoCom(self, ctx, voice, *, text):
+        """echos text in different 'voices'"""
+        voiceChoice = voice.lower().split('+')
+        print(voiceChoice)
+        voiceOutput = text
+        if 'owo' in voiceChoice:
+            voiceOutput = owo.owo(voiceOutput)
+        if 'cry' in voiceChoice:
+            voiceOutput = cry.cry(voiceOutput)
+        await ctx.send(voiceOutput)
 
     @commands.command()
     async def roll(self, ctx, dice: str):
