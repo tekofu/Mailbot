@@ -12,16 +12,16 @@ class Funnies(commands.Cog):
         self.bot = bot
 
     @commands.command(name='say')
-    async def owoCom(self, ctx, voice, *, text):
+    async def owoCom(self, ctx, voice, *text):
         """echos text in different 'voices'"""
         voiceChoice = voice.lower().split('+')
-        voiceOutput = text
+        voiceOutput = ' '.join(text)
         if 'owo' in voiceChoice:
             voiceOutput = owo.owo(voiceOutput)
-        if 'cry' in voiceChoice:
+        elif 'cry' in voiceChoice:
             voiceOutput = cry.cry(voiceOutput)
         else:
-            ctx.send(text)
+            await ctx.send(voice + ' ' + voiceOutput)
             return
         await ctx.send(voiceOutput)
 
