@@ -5,6 +5,7 @@ import aiohttp
 import rps
 from strManip import owo
 from strManip import cry
+from strManip import leet
 
 
 class Funnies(commands.Cog):
@@ -18,9 +19,11 @@ class Funnies(commands.Cog):
         voiceOutput = ' '.join(text)
         if 'owo' in voiceChoice:
             voiceOutput = owo.owo(voiceOutput)
-        elif 'cry' in voiceChoice:
+        if 'cry' in voiceChoice:
             voiceOutput = cry.cry(voiceOutput)
-        else:
+        if 'leet' in voiceChoice:
+            voiceOutput = leet.leet(voiceOutput)
+        if any(x in voiceChoice for x in ['owo','cry','leet']) == False:
             await ctx.send(voice + ' ' + voiceOutput)
             return
         await ctx.send(voiceOutput)
