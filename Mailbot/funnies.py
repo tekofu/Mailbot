@@ -12,9 +12,9 @@ class Funnies(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name='say')
-    async def owoCom(self, ctx, voice, *text):
-        """echos text in different 'voices'. `use .help voices` for more info"""
+    @commands.command()
+    async def say(self, ctx, voice, *text):
+        """echos text in different 'voices'. use '.help voices' for more info"""
         voiceChoice = voice.lower().split('+')
         voiceOutput = ' '.join(text)
         if 'owo' in voiceChoice:
