@@ -14,7 +14,7 @@ class Funnies(commands.Cog):
 
     @commands.command()
     async def say(self, ctx, voice, *text):
-        """echos text in different 'voices'. use '.help voices' for more info"""
+        """echos text in different 'voices'. see '.help voices'"""
         voiceChoice = voice.lower().split('+')
         voiceOutput = ' '.join(text)
         if 'owo' in voiceChoice:
