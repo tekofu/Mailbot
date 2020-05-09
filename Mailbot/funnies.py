@@ -21,6 +21,9 @@ class Funnies(commands.Cog):
             voiceOutput = owo.owo(voiceOutput)
         if 'cry' in voiceChoice:
             voiceOutput = cry.cry(voiceOutput)
+        else:
+            ctx.send(text)
+            return
         await ctx.send(voiceOutput)
 
     @commands.command()
