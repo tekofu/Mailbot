@@ -30,7 +30,7 @@ class Funnies(commands.Cog):
 
     @commands.command(name='voices')
     async def voices(self, voice):
-        """available voices: owo | cry | leet. use + separator to combine"""
+        """owo | cry | leet. use + separator to combine"""
         return
 
     @commands.command()
