@@ -14,7 +14,7 @@ class Funnies(commands.Cog):
 
     @commands.command(name='say')
     async def owoCom(self, ctx, voice, *text):
-        """echos text in different 'voices'"""
+        """echos text in different 'voices'. `use .help voices` for more info"""
         voiceChoice = voice.lower().split('+')
         voiceOutput = ' '.join(text)
         if 'owo' in voiceChoice:
@@ -27,6 +27,11 @@ class Funnies(commands.Cog):
             await ctx.send(voice + ' ' + voiceOutput)
             return
         await ctx.send(voiceOutput)
+
+    @commands.command(name='voices')
+    async def voices(self, voice):
+        """available voices: owo | cry | leet. use + separator to combine"""
+        return
 
     @commands.command()
     async def roll(self, ctx, dice: str):
