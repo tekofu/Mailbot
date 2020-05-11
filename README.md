@@ -13,6 +13,7 @@ A discord bot written in python with the following features:
 
 TODO:
 - Rewrite image manip library
+- Use URLs for image manip as well as content
 - Better documentation for setup and use
 - Random septapus comic posting
 - Fix cry functionality from [original source](https://github.com/dead-bird/apcry/blob/master/api/cry.js) - just needs the math tweaking and adding swapping characters
