@@ -114,15 +114,18 @@ async def waaw(ctx):
 @bot.command()
 async def haah(ctx):
     """Mirrors an image from the right side"""
-    imgUrl = ctx.message.attachments[0].url
-    async with aiohttp.ClientSession() as session:
-        async with session.get(imgUrl) as req:
-            if req.status != 200:
-                await ctx.send("Something went wrong :(")
-            imgData = await req.read()
-    workImg = imgmanip.openImg(imgData)
-    imgOut = imgmanip.rMirror(workImg)
-    await ctx.send(file=discord.File(imgOut))
+    try:
+        imgUrl = ctx.message.attachments[0].url
+        async with aiohttp.ClientSession() as session:
+            async with session.get(imgUrl) as req:
+                if req.status != 200:
+                    await ctx.send("Something went wrong :(")
+                imgData = await req.read()
+        workImg = imgmanip.openImg(imgData)
+        imgOut = imgmanip.rMirror(workImg)
+        await ctx.send(file=discord.File(imgOut))
+    except IndexError:
+        await ctx.send("Error :( please try again")
 
 
 bot.run(discordToken)
