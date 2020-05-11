@@ -15,7 +15,6 @@ def leet(leetInput):
     leetOutput = leetOutput.replace('E', '3')
     leetOutput = leetOutput.replace('A', '4')
     leetOutput = leetOutput.replace('S', '5')
-    #leetOutput = leetOutput.replace('G', '6')
     leetOutput = leetOutput.replace('L', '7')
     leetOutput = leetOutput.replace('B', '8')
 
