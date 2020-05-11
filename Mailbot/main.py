@@ -7,6 +7,7 @@ from discord.ext import commands
 import aiohttp
 import json
 import funnies
+import imgmanip
 
 
 tokenFile = open("config.json", "r")
@@ -94,6 +95,20 @@ async def yt(ctx, *, query):
             ytOutput = await req.json()
 
     await ctx.send("https://youtube.com/watch?v=" + ytOutput['items'][0]['id']['videoId'])
+
+
+@bot.command()
+async def waaw(ctx):
+    """null"""
+    imgUrl = ctx.message.attachments[0].url
+    async with aiohttp.ClientSession() as session:
+        async with session.get(imgUrl) as req:
+            if req.status != 200:
+                await ctx.send("Something went wrong :(")
+            imgData = await req.read()
+    workImg = imgmanip.openImg(imgData)
+    imgOut = imgmanip.lMirror(workImg)
+    await ctx.send(file=discord.File(imgOut))
 
 
 bot.run(discordToken)
