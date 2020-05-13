@@ -6,8 +6,8 @@ import discord
 from discord.ext import commands
 import aiohttp
 import json
-import funnies
-import images
+from cogs import funnies
+from cogs import images
 
 
 tokenFile = open("config.json", "r")

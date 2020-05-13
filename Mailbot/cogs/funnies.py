@@ -2,10 +2,10 @@ import discord
 from discord.ext import commands
 import random
 import aiohttp
-import rps
-from strManip import owo
-from strManip import cry
-from strManip import leet
+from cogs.utils import rps
+from cogs.utils.strManip import owo
+from cogs.utils.strManip import cry
+from cogs.utils.strManip import leet
 
 
 class Funnies(commands.Cog):

@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 import aiohttp
-import imgmanip
+from cogs.utils import imgmanip
 
 
 class Images(commands.Cog):
