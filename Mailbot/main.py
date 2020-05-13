@@ -4,10 +4,10 @@
 import os
 import discord
 from discord.ext import commands
-import aiohttp
 import json
 from cogs import funnies
 from cogs import images
+from cogs import utilities
 
 
 tokenFile = open("config.json", "r")
@@ -24,6 +24,7 @@ class Mailbot(commands.Bot):
         await bot.change_presence(activity=discord.Activity(name='you sleep', type=discord.ActivityType.watching))
         funnies.setup(self)
         images.setup(self)
+        utilities.setup(self)
 
     async def on_message(self, message):
         if message.author == bot.user:
@@ -81,21 +82,5 @@ class Mailbot(commands.Bot):
 
 
 bot = Mailbot(command_prefix='.', description=description)
-
-
-@bot.command()
-async def yt(ctx, *, query):
-    """Searches YouTube and posts the first result"""
-    usefulMsg = query.replace(' ', '%20')
-    async with aiohttp.ClientSession() as session:
-        async with session.get(
-            'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&type=video&q=' +
-                usefulMsg + '&key=' + youtubeToken) as req:
-            if req.status != 200:
-                await ctx.send("Something went wrong :(")
-            ytOutput = await req.json()
-
-    await ctx.send("https://youtube.com/watch?v=" + ytOutput['items'][0]['id']['videoId'])
-
 
 bot.run(discordToken)
