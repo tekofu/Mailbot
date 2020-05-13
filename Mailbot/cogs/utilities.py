@@ -30,7 +30,6 @@ class Utilities(commands.Cog):
     @commands.command()
     async def wiki(self, ctx, *, query):
         """Searches Wikipedia and posts the first result"""
-        #usefulMsg = query.replace(' ', '%20')
         async with aiohttp.ClientSession() as session:
             async with session.get(
                 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' +
