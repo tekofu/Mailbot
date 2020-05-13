@@ -38,8 +38,10 @@ class Utilities(commands.Cog):
                 if req.status != 200:
                     await ctx.send("Something went wrong :(")
                 wikiOutput = await req.json()
-
-        await ctx.send(wikiOutput[3][0])
+        try:
+            await ctx.send(wikiOutput[3][0])
+        except IndexError:
+            await ctx.send('Sorry! No article found')
 
 
 def setup(bot):
