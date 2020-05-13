@@ -153,5 +153,18 @@ class Funnies(commands.Cog):
         """Gives you a random bean fact"""
         await ctx.send(random.choice(beans.beanList))
 
+    @commands.command(hidden=True)
+    async def dril(self, ctx):
+        """Gives you a random dril tweet"""
+        async with aiohttp.ClientSession() as session:
+            async with session.get('https://tekofu.com/dril.json') as req:
+                if req.status != 200:
+                    await ctx.send('Something went wrong :(')
+                drilList = await req.json()
+
+            #print(drilList['urls'])
+            drilTweet = drilList['urls'][random.randrange(0, 9854)]
+            await ctx.send(drilTweet)
+
 def setup(bot):
     bot.add_cog(Funnies(bot))
