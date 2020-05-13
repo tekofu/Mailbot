@@ -25,7 +25,7 @@ class Images(commands.Cog):
             await ctx.send("Error :( please try again")
 
     @commands.command()
-    async def hooh(self, ctx):
+    async def haah(self, ctx):
         """Mirrors an image from the right side"""
         try:
             imgUrl = ctx.message.attachments[0].url
