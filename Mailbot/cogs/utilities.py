@@ -27,6 +27,20 @@ class Utilities(commands.Cog):
 
         await ctx.send("https://youtube.com/watch?v=" + ytOutput['items'][0]['id']['videoId'])
 
+    @commands.command()
+    async def wiki(self, ctx, *, query):
+        """Searches Wikipedia and posts the first result"""
+        #usefulMsg = query.replace(' ', '%20')
+        async with aiohttp.ClientSession() as session:
+            async with session.get(
+                'https://en.wikipedia.org/w/api.php?action=opensearch&search=' +
+                    query + '&limit=1&namespace=0&format=json') as req:
+                if req.status != 200:
+                    await ctx.send("Something went wrong :(")
+                wikiOutput = await req.json()
+
+        await ctx.send(wikiOutput[3][0])
+
 
 def setup(bot):
     bot.add_cog(Utilities(bot))
