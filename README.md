@@ -1,6 +1,6 @@
 # Mailbot
 
-<img src='https://cdn.discordapp.com/app-icons/650044532670595115/068e66aa80389e58cba46ff2f9d1bc04.png?size=256'>
+<img src='https://cdn.discordapp.com/app-icons/650044532670595115/7bf272ddc359d19999a63f382e302ce7.png?size=256'>
 
 A discord bot written in python with the following features:
 - Echo text back with string manipulation
