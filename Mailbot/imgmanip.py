@@ -6,6 +6,7 @@ def openImg(imgData):
     workImg = Image.open(io.BytesIO(imgData))
     return workImg
 
+
 def lMirror(workImg):
     # Get some info about the image
     imgSize = workImg.size
@@ -25,6 +26,7 @@ def lMirror(workImg):
     filename = 'output.' + imgForm
     workImg.save(filename)
     return filename
+
 
 def rMirror(workImg):
     # Get some info about the image

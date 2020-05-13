@@ -2,8 +2,8 @@ import discord
 from discord.ext import commands
 import aiohttp
 import imgmanip
-    
-    
+
+
 class Images(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -23,7 +23,6 @@ class Images(commands.Cog):
             await ctx.send(file=discord.File(imgOut))
         except IndexError:
             await ctx.send("Error :( please try again")
-
 
     @commands.command()
     async def hooh(self, ctx):

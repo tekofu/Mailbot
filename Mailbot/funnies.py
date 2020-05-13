@@ -23,7 +23,7 @@ class Funnies(commands.Cog):
             voiceOutput = cry.cry(voiceOutput)
         if 'leet' in voiceChoice:
             voiceOutput = leet.leet(voiceOutput)
-        if any(x in voiceChoice for x in ['owo','cry','leet']) == False:
+        if any(x in voiceChoice for x in ['owo', 'cry', 'leet']) == False:
             await ctx.send(voice + ' ' + voiceOutput)
             return
         await ctx.send(voiceOutput)
