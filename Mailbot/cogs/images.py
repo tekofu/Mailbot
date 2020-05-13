@@ -16,13 +16,13 @@ class Images(commands.Cog):
             async with aiohttp.ClientSession() as session:
                 async with session.get(imgUrl) as req:
                     if req.status != 200:
-                        await ctx.send("Something went wrong :(")
+                        await ctx.send('Something went wrong :(')
                     imgData = await req.read()
             workImg = imgmanip.openImg(imgData)
             imgOut = imgmanip.lMirror(workImg)
             await ctx.send(file=discord.File(imgOut))
         except IndexError:
-            await ctx.send("Error :( please try again")
+            await ctx.send('Error :( please try again')
 
     @commands.command()
     async def haah(self, ctx):
@@ -32,13 +32,13 @@ class Images(commands.Cog):
             async with aiohttp.ClientSession() as session:
                 async with session.get(imgUrl) as req:
                     if req.status != 200:
-                        await ctx.send("Something went wrong :(")
+                        await ctx.send('Something went wrong :(')
                     imgData = await req.read()
             workImg = imgmanip.openImg(imgData)
             imgOut = imgmanip.rMirror(workImg)
             await ctx.send(file=discord.File(imgOut))
         except IndexError:
-            await ctx.send("Error :( please try again")
+            await ctx.send('Error :( please try again')
 
     @commands.command()
     async def woow(self, ctx):
@@ -48,13 +48,13 @@ class Images(commands.Cog):
             async with aiohttp.ClientSession() as session:
                 async with session.get(imgUrl) as req:
                     if req.status != 200:
-                        await ctx.send("Something went wrong :(")
+                        await ctx.send('Something went wrong :(')
                     imgData = await req.read()
             workImg = imgmanip.openImg(imgData)
             imgOut = imgmanip.tMirror(workImg)
             await ctx.send(file=discord.File(imgOut))
         except IndexError:
-            await ctx.send("Error :( please try again")
+            await ctx.send('Error :( please try again')
 
     @commands.command()
     async def hooh(self, ctx):
@@ -64,13 +64,13 @@ class Images(commands.Cog):
             async with aiohttp.ClientSession() as session:
                 async with session.get(imgUrl) as req:
                     if req.status != 200:
-                        await ctx.send("Something went wrong :(")
+                        await ctx.send('Something went wrong :(')
                     imgData = await req.read()
             workImg = imgmanip.openImg(imgData)
             imgOut = imgmanip.bMirror(workImg)
             await ctx.send(file=discord.File(imgOut))
         except IndexError:
-            await ctx.send("Error :( please try again")
+            await ctx.send('Error :( please try again')
 
 
 def setup(bot):

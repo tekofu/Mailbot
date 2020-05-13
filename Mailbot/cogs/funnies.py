@@ -25,7 +25,7 @@ class Funnies(commands.Cog):
         if 'leet' in voiceChoice:
             voiceOutput = leet.leet(voiceOutput)
         if any(x in voiceChoice for x in ['owo', 'cry', 'leet']) == False:
-            await ctx.send(voice + ' ' + voiceOutput)
+            await ctx.send(f'{voice} {voiceOutput}')
             return
         await ctx.send(voiceOutput)
 
@@ -62,7 +62,7 @@ class Funnies(commands.Cog):
             rpsOutput = rps.finalMessage(playerChoice, compChoice, winningCond)
             await ctx.send(rpsOutput)
         else:
-            await ctx.send("Input error, please try again.")
+            await ctx.send('Input error, please try again.')
 
     @commands.command(name='8ball')
     async def eightBall(self, ctx, *, question):
@@ -98,22 +98,22 @@ class Funnies(commands.Cog):
             async with aiohttp.ClientSession() as session:
                 async with session.get('https://bonequest.com/index.json') as req:
                     if req.status != 200:
-                        await ctx.send("Something went wrong :(")
+                        await ctx.send('Something went wrong :(')
                     comicIndex = await req.json()
 
             comicNum = str(random.randrange(
                 1, comicIndex['episodes'][0]['episode']))
-            await ctx.send("https://www.bonequest.com/" + comicNum + ".gif")
+            await ctx.send(f'https://www.bonequest.com/{comicNum}.gif')
         else:
             query = '+'.join(query)
             async with aiohttp.ClientSession() as session:
-                async with session.get('https://bonequest.com/search/?q=' + query + '&json=json') as req:
+                async with session.get('https://bonequest.com/search/?q={query}&json=json') as req:
                     if req.status != 200:
-                        await ctx.send("Something went wrong :(")
+                        await ctx.send('Something went wrong :(')
                     searchIndex = await req.json()
 
             comicNum = str(searchIndex[0]['episode'])
-            await ctx.send("https://www.bonequest.com/" + comicNum + ".gif")
+            await ctx.send(f'https://www.bonequest.com/{comicNum}.gif')
 
     @commands.command()
     async def cat(self, ctx):
@@ -121,7 +121,7 @@ class Funnies(commands.Cog):
         async with aiohttp.ClientSession() as session:
             async with session.get('http://aws.random.cat/meow') as req:
                 if req.status != 200:
-                    await ctx.send("Something went wrong :(")
+                    await ctx.send('Something went wrong :(')
                 reply = await req.json()
                 await ctx.send(embed=discord.Embed(title='Look at this random cat!').set_image(url=reply['file']))
 
@@ -131,7 +131,7 @@ class Funnies(commands.Cog):
         async with aiohttp.ClientSession() as session:
             async with session.get('https://random.dog/woof?filter=mp4,webm') as req:
                 if req.status != 200:
-                    await ctx.send("Something went wrong :(")
+                    await ctx.send('Something went wrong :(')
                 filename = await req.text()
                 url = f'https://random.dog/{filename}'
             await ctx.send(embed=discord.Embed(title='Look at this random dog!').set_image(url=url))
@@ -142,11 +142,11 @@ class Funnies(commands.Cog):
         async with aiohttp.ClientSession() as session:
             async with session.get('http://frog.tips/api/1/tips') as req:
                 if req.status != 200:
-                    await ctx.send("Something went wrong :(")
+                    await ctx.send('Something went wrong :(')
                 frogCroak = await req.json()
             frogNum = str(frogCroak['tips'][0]['number'])
             frogTip = frogCroak['tips'][0]['tip']
-            await ctx.send('**Frog tip #' + frogNum + '**' + '\n' + frogTip)
+            await ctx.send(f'**Frog tip #{frogNum}**\n{frogTip}')
 
     @commands.command(hidden=True)
     async def bean(self, ctx):

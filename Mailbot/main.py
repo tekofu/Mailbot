@@ -10,7 +10,7 @@ from cogs import images
 from cogs import utilities
 
 
-tokenFile = open("config.json", "r")
+tokenFile = open('config.json', 'r')
 tokenLoad = json.load(tokenFile)
 discordToken = tokenLoad['discordToken']
 youtubeToken = tokenLoad['youtubeToken']
@@ -31,10 +31,10 @@ class Mailbot(commands.Bot):
             return
 
         elif 'GOODNIGHT RYAN' in message.content.upper():
-            await message.channel.send("Goodnight Ryan!")
+            await message.channel.send('Goodnight Ryan!')
 
         elif message.content.startswith('ay'):
-            await message.channel.send("I can fly!")
+            await message.channel.send('I can fly!')
 
         await bot.process_commands(message)
 

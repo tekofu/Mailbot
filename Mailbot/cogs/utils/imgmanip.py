@@ -23,7 +23,7 @@ def lMirror(workImg):
     cropImg = cropImg.transpose(Image.FLIP_LEFT_RIGHT)
     # Paste it on the right side
     workImg.paste(cropImg, (int(imgWidth / 2), 0, imgWidth, imgHeight))
-    filename = 'output.' + imgForm
+    filename = f'output.{imgForm}'
     workImg.save(filename)
     return filename
 
@@ -44,7 +44,7 @@ def rMirror(workImg):
     cropImg = cropImg.transpose(Image.FLIP_LEFT_RIGHT)
     # Paste it on the left side
     workImg.paste(cropImg, (0, 0, int(imgWidth / 2), imgHeight))
-    filename = 'output.' + imgForm
+    filename = f'output.{imgForm}'
     workImg.save(filename)
     return filename
 
@@ -65,7 +65,7 @@ def tMirror(workImg):
     cropImg = cropImg.transpose(Image.FLIP_TOP_BOTTOM)
     # Paste it on the bottom side
     workImg.paste(cropImg, (0, int(imgHeight / 2), imgWidth, imgHeight))
-    filename = 'output.' + imgForm
+    filename = f'output.{imgForm}'
     workImg.save(filename)
     return filename
 
@@ -86,6 +86,6 @@ def bMirror(workImg):
     cropImg = cropImg.transpose(Image.FLIP_TOP_BOTTOM)
     # Paste it on the top side
     workImg.paste(cropImg, (0, 0, imgWidth, int(imgHeight / 2)))
-    filename = 'output.' + imgForm
+    filename = f'output.{imgForm}'
     workImg.save(filename)
     return filename

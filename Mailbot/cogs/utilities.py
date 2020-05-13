@@ -4,7 +4,7 @@ import aiohttp
 import json
 
 
-tokenFile = open("config.json", "r")
+tokenFile = open('config.json')
 tokenLoad = json.load(tokenFile)
 youtubeToken = tokenLoad['youtubeToken']
 
@@ -19,23 +19,23 @@ class Utilities(commands.Cog):
         usefulMsg = query.replace(' ', '%20')
         async with aiohttp.ClientSession() as session:
             async with session.get(
-                'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&type=video&q=' +
-                    usefulMsg + '&key=' + youtubeToken) as req:
+                f'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&type=video&q= \
+                    {usefulMsg}&key={youtubeToken}') as req:
                 if req.status != 200:
-                    await ctx.send("Something went wrong :(")
+                    await ctx.send('Something went wrong :(')
                 ytOutput = await req.json()
 
-        await ctx.send("https://youtube.com/watch?v=" + ytOutput['items'][0]['id']['videoId'])
+        await ctx.send('https://youtube.com/watch?v=' + ytOutput['items'][0]['id']['videoId'])
 
     @commands.command()
     async def wiki(self, ctx, *, query):
         """Searches Wikipedia and posts the first result"""
         async with aiohttp.ClientSession() as session:
             async with session.get(
-                'https://en.wikipedia.org/w/api.php?action=opensearch&search=' +
-                    query + '&limit=1&namespace=0&format=json') as req:
+                f'https://en.wikipedia.org/w/api.php?action=opensearch&search={query} \
+                    &limit=1&namespace=0&format=json') as req:
                 if req.status != 200:
-                    await ctx.send("Something went wrong :(")
+                    await ctx.send('Something went wrong :(')
                 wikiOutput = await req.json()
         try:
             await ctx.send(wikiOutput[3][0])
