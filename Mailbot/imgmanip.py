@@ -1,6 +1,7 @@
 from PIL import Image
 import io
 
+
 def openImg(imgData):
     workImg = Image.open(io.BytesIO(imgData))
     return workImg

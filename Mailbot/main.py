@@ -7,7 +7,7 @@ from discord.ext import commands
 import aiohttp
 import json
 import funnies
-import imgmanip
+import images
 
 
 tokenFile = open("config.json", "r")
@@ -23,6 +23,7 @@ class Mailbot(commands.Bot):
         print('Now logged in as {0.user}'.format(bot))
         await bot.change_presence(activity=discord.Activity(name='you sleep', type=discord.ActivityType.watching))
         funnies.setup(self)
+        images.setup(self)
 
     async def on_message(self, message):
         if message.author == bot.user:
@@ -95,40 +96,6 @@ async def yt(ctx, *, query):
             ytOutput = await req.json()
 
     await ctx.send("https://youtube.com/watch?v=" + ytOutput['items'][0]['id']['videoId'])
-
-
-@bot.command()
-async def waaw(ctx):
-    """Mirrors an image from the left side"""
-    try:
-        imgUrl = ctx.message.attachments[0].url
-        async with aiohttp.ClientSession() as session:
-            async with session.get(imgUrl) as req:
-                if req.status != 200:
-                    await ctx.send("Something went wrong :(")
-                imgData = await req.read()
-        workImg = imgmanip.openImg(imgData)
-        imgOut = imgmanip.lMirror(workImg)
-        await ctx.send(file=discord.File(imgOut))
-    except IndexError:
-        await ctx.send("Error :( please try again")
-
-
-@bot.command()
-async def haah(ctx):
-    """Mirrors an image from the right side"""
-    try:
-        imgUrl = ctx.message.attachments[0].url
-        async with aiohttp.ClientSession() as session:
-            async with session.get(imgUrl) as req:
-                if req.status != 200:
-                    await ctx.send("Something went wrong :(")
-                imgData = await req.read()
-        workImg = imgmanip.openImg(imgData)
-        imgOut = imgmanip.rMirror(workImg)
-        await ctx.send(file=discord.File(imgOut))
-    except IndexError:
-        await ctx.send("Error :( please try again")
 
 
 bot.run(discordToken)
