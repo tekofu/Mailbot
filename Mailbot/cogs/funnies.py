@@ -3,6 +3,7 @@ from discord.ext import commands
 import random
 import aiohttp
 from cogs.utils import rps
+from cogs.utils import beans
 from cogs.utils.strManip import owo
 from cogs.utils.strManip import cry
 from cogs.utils.strManip import leet
@@ -147,6 +148,10 @@ class Funnies(commands.Cog):
             frogTip = frogCroak['tips'][0]['tip']
             await ctx.send('**Frog tip #' + frogNum + '**' + '\n' + frogTip)
 
+    @commands.command(hidden=True)
+    async def bean(self, ctx):
+        """Gives you a random bean fact"""
+        await ctx.send(random.choice(beans.beanList))
 
 def setup(bot):
     bot.add_cog(Funnies(bot))
