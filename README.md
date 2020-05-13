@@ -19,3 +19,4 @@ TODO:
 - Fix cry functionality from [original source](https://github.com/dead-bird/apcry/blob/master/api/cry.js) - just needs the math tweaking and adding swapping characters
 - More dumb joke features
 - Implement logging (only if needed)
+- Wikipedia search
