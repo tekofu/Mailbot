@@ -11,7 +11,7 @@ tokenLoad = json.load(tokenFile)
 discordToken = tokenLoad['discordToken']
 youtubeToken = tokenLoad['youtubeToken']
 boardId = int(tokenLoad['starboardId'])
-description = 'A bad discord robot for the Mailroom'
+description = 'A bad Discord bot... for the Mailroom'
 
 
 class Mailbot(commands.Bot):
