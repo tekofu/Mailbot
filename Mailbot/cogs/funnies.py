@@ -1,12 +1,9 @@
-import discord
-from discord.ext import commands
 import random
 import aiohttp
-from cogs.utils import rps
-from cogs.utils import beans
-from cogs.utils.strManip import owo
-from cogs.utils.strManip import cry
-from cogs.utils.strManip import leet
+import discord
+from discord.ext import commands
+from cogs.utils import beans, rps
+from cogs.utils.strManip import cry, leet, owo
 
 
 class Funnies(commands.Cog):

@@ -1,6 +1,6 @@
-from PIL import Image
 import io
 import aiohttp
+from PIL import Image
 
 
 async def openImg(imgUrl):

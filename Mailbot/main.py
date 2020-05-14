@@ -1,13 +1,10 @@
 #!/usr/bin/env python
 # Mailbot main script
 
+import json
 import discord
 from discord.ext import commands
-import json
-from cogs import funnies
-from cogs import images
-from cogs import utilities
-
+from cogs import funnies, images, utilities
 
 tokenFile = open('config.json', 'r')
 tokenLoad = json.load(tokenFile)

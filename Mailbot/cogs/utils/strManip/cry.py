@@ -25,9 +25,9 @@ SOFTWARE.
 
 """
 
-import re
-import random
 import math
+import random
+import re
 
 
 def cry(cryInput):

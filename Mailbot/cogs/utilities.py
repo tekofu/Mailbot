@@ -1,8 +1,7 @@
+import json
+import aiohttp
 import discord
 from discord.ext import commands
-import aiohttp
-import json
-
 
 tokenFile = open('config.json')
 tokenLoad = json.load(tokenFile)
