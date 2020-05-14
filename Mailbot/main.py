@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # Mailbot main script
 
-import os
 import discord
 from discord.ext import commands
 import json
