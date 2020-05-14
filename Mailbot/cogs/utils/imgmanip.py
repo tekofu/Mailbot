@@ -36,23 +36,23 @@ def ultiMirror(workImg, flag):
     if flag == 'l' or 'r':
         flipDir = Image.FLIP_LEFT_RIGHT
         if flag == 'l':
-            cropImg = workImg.crop(tuple(cropLeft))
+            cropImg = workImg.crop(cropLeft)
             cropImg = cropImg.transpose(flipDir)
-            workImg.paste(cropImg, tuple(cropRight))
+            workImg.paste(cropImg, cropRight)
         if flag == 'r':
-            cropImg = workImg.crop(tuple(cropRight))
+            cropImg = workImg.crop(cropRight)
             cropImg = cropImg.transpose(flipDir)
-            workImg.paste(cropImg, tuple(cropLeft))
+            workImg.paste(cropImg, cropLeft)
     if flag == 't' or 'b':
         flipDir = Image.FLIP_TOP_BOTTOM
         if flag == 't':
-            cropImg = workImg.crop(tuple(cropTop))
+            cropImg = workImg.crop(cropTop)
             cropImg = cropImg.transpose(flipDir)
-            workImg.paste(cropImg, tuple(cropBot))
+            workImg.paste(cropImg, cropBot)
         if flag == 'b':
-            cropImg = workImg.crop(tuple(cropBot))
+            cropImg = workImg.crop(cropBot)
             cropImg = cropImg.transpose(flipDir)
-            workImg.paste(cropImg, tuple(cropTop))
+            workImg.paste(cropImg, cropTop)
 
     filename = f'output.{imgForm}'
     workImg.save(filename)
