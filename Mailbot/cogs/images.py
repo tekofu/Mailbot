@@ -1,6 +1,5 @@
 import discord
 from discord.ext import commands
-import aiohttp
 from cogs.utils import imgmanip
 
 
@@ -11,66 +10,30 @@ class Images(commands.Cog):
     @commands.command()
     async def waaw(self, ctx):
         """Mirrors an image from the left side"""
-        try:
-            imgUrl = ctx.message.attachments[0].url
-            async with aiohttp.ClientSession() as session:
-                async with session.get(imgUrl) as req:
-                    if req.status != 200:
-                        await ctx.send('Something went wrong :(')
-                    imgData = await req.read()
-            workImg = imgmanip.openImg(imgData)
-            imgOut = imgmanip.lMirror(workImg)
-            await ctx.send(file=discord.File(imgOut))
-        except IndexError:
-            await ctx.send('Error :( please try again')
+        workImg = await imgmanip.openImg(ctx.message.attachments[0].url)
+        imgOut = imgmanip.lMirror(workImg)
+        await ctx.send(file=discord.File(imgOut))
 
     @commands.command()
     async def haah(self, ctx):
         """Mirrors an image from the right side"""
-        try:
-            imgUrl = ctx.message.attachments[0].url
-            async with aiohttp.ClientSession() as session:
-                async with session.get(imgUrl) as req:
-                    if req.status != 200:
-                        await ctx.send('Something went wrong :(')
-                    imgData = await req.read()
-            workImg = imgmanip.openImg(imgData)
-            imgOut = imgmanip.rMirror(workImg)
-            await ctx.send(file=discord.File(imgOut))
-        except IndexError:
-            await ctx.send('Error :( please try again')
+        workImg = await imgmanip.openImg(ctx.message.attachments[0].url)
+        imgOut = imgmanip.rMirror(workImg)
+        await ctx.send(file=discord.File(imgOut))
 
     @commands.command()
     async def woow(self, ctx):
         """Mirrors an image from the top side"""
-        try:
-            imgUrl = ctx.message.attachments[0].url
-            async with aiohttp.ClientSession() as session:
-                async with session.get(imgUrl) as req:
-                    if req.status != 200:
-                        await ctx.send('Something went wrong :(')
-                    imgData = await req.read()
-            workImg = imgmanip.openImg(imgData)
-            imgOut = imgmanip.tMirror(workImg)
-            await ctx.send(file=discord.File(imgOut))
-        except IndexError:
-            await ctx.send('Error :( please try again')
+        workImg = await imgmanip.openImg(ctx.message.attachments[0].url)
+        imgOut = imgmanip.tMirror(workImg)
+        await ctx.send(file=discord.File(imgOut))
 
     @commands.command()
     async def hooh(self, ctx):
         """Mirrors an image from the bottom side"""
-        try:
-            imgUrl = ctx.message.attachments[0].url
-            async with aiohttp.ClientSession() as session:
-                async with session.get(imgUrl) as req:
-                    if req.status != 200:
-                        await ctx.send('Something went wrong :(')
-                    imgData = await req.read()
-            workImg = imgmanip.openImg(imgData)
-            imgOut = imgmanip.bMirror(workImg)
-            await ctx.send(file=discord.File(imgOut))
-        except IndexError:
-            await ctx.send('Error :( please try again')
+        workImg = await imgmanip.openImg(ctx.message.attachments[0].url)
+        imgOut = imgmanip.bMirror(workImg)
+        await ctx.send(file=discord.File(imgOut))
 
 
 def setup(bot):

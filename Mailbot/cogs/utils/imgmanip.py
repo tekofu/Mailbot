@@ -1,8 +1,13 @@
 from PIL import Image
 import io
+import aiohttp
+import asyncio
 
 
-def openImg(imgData):
+async def openImg(imgUrl):
+    async with aiohttp.ClientSession() as session:
+        async with session.get(imgUrl) as req:
+            imgData = await req.read()
     workImg = Image.open(io.BytesIO(imgData))
     return workImg
 
