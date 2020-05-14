@@ -2,7 +2,9 @@
 
 <img src='https://cdn.discordapp.com/app-icons/650044532670595115/7bf272ddc359d19999a63f382e302ce7.png?size=256'>
 
-A discord bot written in python with the following features:
+A bad Discord bot written in Python
+
+Some features it has includes:
 - Echo text back with string manipulation
 - Play Rock paper scissors with the bot
 - Search for YouTube videos
