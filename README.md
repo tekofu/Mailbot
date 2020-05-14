@@ -1,6 +1,6 @@
 # Mailbot
 
-<img src='https://github.com/tekofu/Mailbot/raw/master/Assets/Mailbot-Small.png'>
+<img src='https://github.com/tekofu/Mailbot/raw/master/Assets/Circle-Icon.png'>
 
 A bad Discord bot written in Python
 
