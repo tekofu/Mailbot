@@ -12,7 +12,6 @@ A discord bot written in python with the following features:
 - Image mirroring
 
 TODO:
-- Rewrite image manip library
 - Use URLs for image manip as well as content
 - Better documentation for setup and use
 - Random septapus comic posting

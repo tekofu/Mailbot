@@ -1,7 +1,6 @@
 from PIL import Image
 import io
 import aiohttp
-import asyncio
 
 
 async def openImg(imgUrl):
@@ -12,85 +11,49 @@ async def openImg(imgUrl):
     return workImg
 
 
-def lMirror(workImg):
+def ultiMirror(workImg, flag):
     # Get some info about the image
     imgSize = workImg.size
     imgForm = workImg.format
     imgWidth = imgSize[0]
     imgHeight = imgSize[1]
-    # Deal with odd image widths
+    # Deal with odd image widths/heights
     if imgWidth % 2 != 0:
-        imgWidth = imgWidth - 1
-    # Select the left half of the image
-    cropBox = (0, 0, int(imgWidth / 2), imgHeight)
-    # Flip it
-    cropImg = workImg.crop(cropBox)
-    cropImg = cropImg.transpose(Image.FLIP_LEFT_RIGHT)
-    # Paste it on the right side
-    workImg.paste(cropImg, (int(imgWidth / 2), 0, imgWidth, imgHeight))
-    filename = f'output.{imgForm}'
-    workImg.save(filename)
-    return filename
-
-
-def rMirror(workImg):
-    # Get some info about the image
-    imgSize = workImg.size
-    imgForm = workImg.format
-    imgWidth = imgSize[0]
-    imgHeight = imgSize[1]
-    # Deal with odd image widths
-    if imgWidth % 2 != 0:
-        imgWidth = imgWidth - 1
-    # Select the right half of the image
-    cropBox = (int(imgWidth / 2), 0, imgWidth, imgHeight)
-    # Flip it
-    cropImg = workImg.crop(cropBox)
-    cropImg = cropImg.transpose(Image.FLIP_LEFT_RIGHT)
-    # Paste it on the left side
-    workImg.paste(cropImg, (0, 0, int(imgWidth / 2), imgHeight))
-    filename = f'output.{imgForm}'
-    workImg.save(filename)
-    return filename
-
-
-def tMirror(workImg):
-    # Get some info about the image
-    imgSize = workImg.size
-    imgForm = workImg.format
-    imgWidth = imgSize[0]
-    imgHeight = imgSize[1]
-    # Deal with odd image heights
+        imgWidth += - 1
     if imgHeight % 2 != 0:
-        imgHeight = imgHeight - 1
-    # Select the top half of the image
-    cropBox = (0, 0, imgWidth, int(imgHeight / 2))
-    # Flip it
-    cropImg = workImg.crop(cropBox)
-    cropImg = cropImg.transpose(Image.FLIP_TOP_BOTTOM)
-    # Paste it on the bottom side
-    workImg.paste(cropImg, (0, int(imgHeight / 2), imgWidth, imgHeight))
-    filename = f'output.{imgForm}'
-    workImg.save(filename)
-    return filename
+        imgHeight += - 1
 
+    # Base cropbox state
+    #cropBox = (0, 0, imgWidth, imgHeight)
 
-def bMirror(workImg):
-    # Get some info about the image
-    imgSize = workImg.size
-    imgForm = workImg.format
-    imgWidth = imgSize[0]
-    imgHeight = imgSize[1]
-    # Deal with odd image widths
-    if imgWidth % 2 != 0:
-        imgWidth = imgWidth - 1
-    # Select the bottom half of the image
-    cropBox = (0, int(imgHeight / 2), imgWidth, imgHeight)
-    # Flip it
-    cropImg = workImg.crop(cropBox)
-    cropImg = cropImg.transpose(Image.FLIP_TOP_BOTTOM)
-    # Paste it on the top side
-    workImg.paste(cropImg, (0, 0, imgWidth, int(imgHeight / 2)))
+    # Designate different section boxes
+    cropLeft = (0, 0, int(imgWidth / 2), imgHeight)
+    cropRight = (int(imgWidth / 2), 0, imgWidth, imgHeight)
+    cropTop = (0, 0, imgWidth, int(imgHeight / 2))
+    cropBot = (0, int(imgHeight / 2), imgWidth, imgHeight)
+
+    # Change flip direction depending on flags
+    if flag == 'l' or 'r':
+        flipDir = Image.FLIP_LEFT_RIGHT
+        if flag == 'l':
+            cropImg = workImg.crop(tuple(cropLeft))
+            cropImg = cropImg.transpose(flipDir)
+            workImg.paste(cropImg, tuple(cropRight))
+        if flag == 'r':
+            cropImg = workImg.crop(tuple(cropRight))
+            cropImg = cropImg.transpose(flipDir)
+            workImg.paste(cropImg, tuple(cropLeft))
+    if flag == 't' or 'b':
+        flipDir = Image.FLIP_TOP_BOTTOM
+        if flag == 't':
+            cropImg = workImg.crop(tuple(cropTop))
+            cropImg = cropImg.transpose(flipDir)
+            workImg.paste(cropImg, tuple(cropBot))
+        if flag == 'b':
+            cropImg = workImg.crop(tuple(cropBot))
+            cropImg = cropImg.transpose(flipDir)
+            workImg.paste(cropImg, tuple(cropTop))
+
     filename = f'output.{imgForm}'
     workImg.save(filename)
     return filename
