@@ -13,9 +13,26 @@
 - Self pinning to a dedicated channel
 - Image mirroring
 
+## Getting Started:
+Requirements: 
+- [discord.py](https://discordpy.readthedocs.io/en/latest/)
+- [Pillow](https://pillow.readthedocs.io/en/stable/)
+
+Installation:
+1. Install the required libraries shown above
+2. Create the file `config.json` in the same directory as `main.py`
+3. In `config.json` create values for `discordToken`, `youtubeToken` and `starboardID`: the ID of the channel you want the bot to repost pinned images. For example:
+```
+{
+    "discordToken" : "token goes here!",
+    "youtubeToken" : "token goes here!",
+    "starboardId"  : "ID goes here!"
+}
+```
+4. Run `main.py`
+
 ## TODO:
 - Use URLs for image manip as well as content
-- Better documentation for setup and use
 - Random septapus comic posting
 - Fix cry functionality from [original source](https://github.com/dead-bird/apcry/blob/master/api/cry.js) - just needs the math tweaking and adding swapping characters
 - More dumb joke features
