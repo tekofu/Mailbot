@@ -2,9 +2,9 @@
 
 <img src='https://github.com/tekofu/Mailbot/raw/master/Assets/Circle-Icon.png'>
 
-A bad Discord bot written in Python
+**A bad Discord bot written in Python**
 
-Some features it has includes:
+## Some features it has includes:
 - Echo text back with string manipulation
 - Play Rock paper scissors with the bot
 - Search for YouTube videos
@@ -13,7 +13,7 @@ Some features it has includes:
 - Self pinning to a dedicated channel
 - Image mirroring
 
-TODO:
+## TODO:
 - Use URLs for image manip as well as content
 - Better documentation for setup and use
 - Random septapus comic posting
