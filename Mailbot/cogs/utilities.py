@@ -41,6 +41,26 @@ class Utilities(commands.Cog):
         except IndexError:
             await ctx.send('Sorry! No article found')
 
+    @commands.command()
+    async def ud(self, ctx, *, query):
+        """Get a definition of a term from Urban Dictionary"""
+        async with aiohttp.ClientSession() as session:
+            async with session.get(
+                    f'http://urbanscraper.herokuapp.com/define/{query}') as req:
+                if req.status == 404:
+                    await ctx.send(f'No definition found for "{query}"')
+                elif req.status != 200:
+                    await ctx.send('Something went wrong :(')
+                udOutput = await req.json()
+
+        embed = discord.Embed()
+
+        embed.add_field(name=query, value=udOutput['definition'])
+        try:
+            await ctx.send(embed=embed)
+        except IndexError:
+            await ctx.send('Sorry! No definition found')
+
 
 def setup(bot):
     bot.add_cog(Utilities(bot))
