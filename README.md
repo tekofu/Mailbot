@@ -7,7 +7,7 @@
 ## Some features it has includes:
 - Echo text back with string manipulation
 - Play Rock paper scissors with the bot
-- Search for YouTube videos
+- Search for YouTube videos / Wikipedia articles 
 - Magic 8-Ball responses
 - Random bonequest comics
 - Self pinning to a dedicated channel
