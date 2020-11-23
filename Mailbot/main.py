@@ -4,7 +4,7 @@
 import json
 import discord
 from discord.ext import commands
-from cogs import funnies, images, utilities
+from cogs import funnies, images, polls, utilities
 
 tokenFile = open('config.json', 'r')
 tokenLoad = json.load(tokenFile)
@@ -20,6 +20,7 @@ class Mailbot(commands.Bot):
         await bot.change_presence(activity=discord.Activity(name='you sleep', type=discord.ActivityType.watching))
         funnies.setup(self)
         images.setup(self)
+        polls.setup(self)
         utilities.setup(self)
 
     async def on_message(self, message):
