@@ -21,7 +21,7 @@ Requirements:
 Installation:
 1. Install the required libraries shown above
 2. Create the file `config.json` in the same directory as `main.py`
-3. In `config.json` create values for `discordToken`, `youtubeToken` and `starboardID`: the ID of the channel you want the bot to repost pinned images. For example:
+3. In `config.json` create values for `discordToken`, `youtubeToken` and `starboardID`: the ID of the channel you want the bot to repost pinned posts. For example:
 ```
 {
     "discordToken" : "token goes here!",
