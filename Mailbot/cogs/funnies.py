@@ -104,7 +104,7 @@ class Funnies(commands.Cog):
         else:
             query = '+'.join(query)
             async with aiohttp.ClientSession() as session:
-                async with session.get('https://bonequest.com/search/?q={query}&json=json') as req:
+                async with session.get(f'https://bonequest.com/search/?q={query}&json=json') as req:
                     if req.status != 200:
                         await ctx.send('Something went wrong :(')
                     searchIndex = await req.json()
