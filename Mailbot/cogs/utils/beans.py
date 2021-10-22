@@ -19,5 +19,5 @@ beanList = [
     'The soybean (Glycine max) is the most economically important bean in the world, providing vegetable protein for millions of people and ingredients for hundreds of chemical products.',
     'The common bean (Phaseolus vulgaris) is second to the soybean in importance and is of Central and South American origin.',
     'The bonavist bean or hyacinth bean is a common garden ornamental. It is a large tropical climbing plant.',
-    'Soaking dried beans for a couple of hours brings them back to life, activating enzymes, proteins, minerals and vitamins; and they are better for cooking than.'
+    'Soaking dried beans for a couple of hours brings them back to life, activating enzymes, proteins, minerals and vitamins; and they are better for cooking than dirtpipe.'
 ]
