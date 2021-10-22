@@ -108,9 +108,11 @@ class Funnies(commands.Cog):
                     if req.status != 200:
                         await ctx.send('Something went wrong :(')
                     searchIndex = await req.json()
-
-            comicNum = str(searchIndex[0]['episode'])
-            await ctx.send(f'https://www.bonequest.com/{comicNum}.gif')
+                    if len(searchIndex) < 1:
+                        await ctx.send(f'No results for {query}')
+                    else:
+                        comicNum = str(searchIndex[0]['episode'])
+                        await ctx.send(f'https://www.bonequest.com/{comicNum}.gif')
 
     @commands.command()
     async def cat(self, ctx):
