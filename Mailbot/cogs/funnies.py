@@ -161,9 +161,9 @@ class Funnies(commands.Cog):
                     await ctx.send('Something went wrong :(')
                 drilList = await req.json()
 
-            #print(drilList['urls'])
             drilTweet = drilList['urls'][random.randrange(0, 9854)]
             await ctx.send(drilTweet)
+
 
 def setup(bot):
     bot.add_cog(Funnies(bot))
