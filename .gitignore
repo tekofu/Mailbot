@@ -1,4 +1,6 @@
 __pycache__
 Mailbot/config.json
 Mailbot/polls.json
+Mailbot/Mailbot.code-workspace
 output*
+.venv
