@@ -37,7 +37,7 @@ class XIVAPI(commands.Cog):
 
         embed = discord.Embed()
         embed.add_field(name='Universalis Link:',
-                        value=f'https://universalis.app/market/({itemID})', inline=False)
+                        value=f'https://universalis.app/market/{itemID}', inline=False)
         embed.set_author(name=itemName,
                          icon_url='https://xivapi.com/' + itemIcon)
 
