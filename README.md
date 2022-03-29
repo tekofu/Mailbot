@@ -12,6 +12,7 @@
 - Random bonequest comics
 - Self pinning to a dedicated channel
 - Image mirroring
+- Searching the FFXIV marketboards
 
 ## Getting Started:
 Requirements: 
@@ -26,6 +27,7 @@ Installation:
 {
     "discordToken" : "token goes here!",
     "youtubeToken" : "token goes here!",
+    "xivToken"     : "token goes here!",
     "starboardId"  : "ID goes here!"
 }
 ```
@@ -39,10 +41,4 @@ Installation:
 - Implement logging (only if needed)
 - Add bot posts when people in the server go live on twitch.tv (possible automatically or need a list?)
 - Add poll functionality with categories/running "scores"
-
-- FFXIV Stuff: 
-    - Mat from map used for
-    - MB prices
-    - Where to get furniture
-    - Lodestone news
 

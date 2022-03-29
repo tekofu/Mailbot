@@ -4,12 +4,11 @@
 import json
 import discord
 from discord.ext import commands
-from cogs import funnies, images, polls, utilities
+from cogs import funnies, images, polls, utilities, xiv
 
 tokenFile = open('config.json', 'r')
 tokenLoad = json.load(tokenFile)
 discordToken = tokenLoad['discordToken']
-youtubeToken = tokenLoad['youtubeToken']
 boardId = int(tokenLoad['starboardId'])
 description = 'A bad Discord bot... for the Mailroom'
 
@@ -22,6 +21,7 @@ class Mailbot(commands.Bot):
         images.setup(self)
         polls.setup(self)
         utilities.setup(self)
+        xiv.setup(self)
 
     async def on_message(self, message):
         if message.author == bot.user:
