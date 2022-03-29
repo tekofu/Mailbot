@@ -68,7 +68,7 @@ class Funnies(commands.Cog):
             'It is certain.',
             'It is decidedly so.',
             'Without a doubt.',
-            'Yes – definitely.',
+            'Yes - definitely.',
             'You may rely on it.',
             'As I see it, yes.',
             'Most likely.',
@@ -84,7 +84,8 @@ class Funnies(commands.Cog):
             'My reply is no.',
             'My sources say no.',
             'Outlook not so good.',
-            'Very doubtful.'
+            'Very doubtful.',
+            'That, I can\'t deny.'
         ]
         await ctx.send(random.choice(ballList))
 
