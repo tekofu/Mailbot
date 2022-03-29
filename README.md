@@ -38,7 +38,6 @@ Installation:
 - Random septapus comic posting
 - Fix cry functionality from [original source](https://github.com/dead-bird/apcry/blob/master/api/cry.js) - just needs the math tweaking and adding swapping characters
 - More dumb joke features
-- Implement logging (only if needed)
 - Add bot posts when people in the server go live on twitch.tv (possible automatically or need a list?)
 - Add poll functionality with categories/running "scores"
 

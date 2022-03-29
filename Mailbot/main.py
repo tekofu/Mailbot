@@ -3,8 +3,11 @@
 
 import json
 import discord
+import logging
 from discord.ext import commands
 from cogs import funnies, images, polls, utilities, xiv
+
+logging.basicConfig(level=logging.INFO)
 
 tokenFile = open('config.json', 'r')
 tokenLoad = json.load(tokenFile)
