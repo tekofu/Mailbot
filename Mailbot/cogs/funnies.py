@@ -137,6 +137,16 @@ class Funnies(commands.Cog):
             await ctx.send(embed=discord.Embed(title='Look at this random dog!').set_image(url=url))
 
     @commands.command()
+    async def fox(self, ctx):
+        """Gives you a random fox."""
+        async with aiohttp.ClientSession() as session:
+            async with session.get('https://randomfox.ca/floof/?ref=apilist.fun') as req:
+                if req.status != 200:
+                    await ctx.send('Something went wrong :(')
+                reply= await req.json()
+            await ctx.send(embed=discord.Embed(title='Look at this random fox!').set_image(url=reply['image']))
+
+    @commands.command()
     async def frog(self, ctx):
         """Gives you a random frog tip."""
         async with aiohttp.ClientSession() as session:
