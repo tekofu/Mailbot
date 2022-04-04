@@ -34,6 +34,9 @@ class Mailbot(commands.Bot):
         if message.author == bot.user:
             return
 
+        elif message.author.id == 209616056434688000:
+            await message.channel.send('The post above is cringe, please ignore it')
+
         elif 'GOODNIGHT RYAN' in message.content.upper():
             await message.channel.send('Goodnight Ryan!')
 
