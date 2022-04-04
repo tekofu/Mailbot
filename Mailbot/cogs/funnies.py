@@ -147,6 +147,16 @@ class Funnies(commands.Cog):
             await ctx.send(embed=discord.Embed(title='Look at this random fox!').set_image(url=reply['image']))
 
     @commands.command()
+    async def shibe(self, ctx):
+        """Gives you a random shibe."""
+        async with aiohttp.ClientSession() as session:
+            async with session.get('https://shibe.online/api/shibes?count=1&urls=true&httpsUrls=true') as req:
+                if req.status != 200:
+                    await ctx.send('Something went wrong :(')
+                reply= await req.json()
+            await ctx.send(embed=discord.Embed(title='Look at this random shibe!').set_image(url=reply[0]))
+
+    @commands.command()
     async def frog(self, ctx):
         """Gives you a random frog tip."""
         async with aiohttp.ClientSession() as session:
