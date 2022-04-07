@@ -20,7 +20,7 @@ Requirements:
 - [Pillow](https://pillow.readthedocs.io/en/stable/)
 
 Installation:
-1. Install the required libraries shown above
+1. Install the required libraries with `python -m pip install -r requirements.txt`
 2. Create the file `config.json` in the same directory as `main.py`
 3. In `config.json` create a value for `discordToken` (Required Discord bot token). And optionally: `youtubeToken` (YouTube API token), `xivToken` (XIVAPI token) and `starboardID` (The ID of the channel you want the bot to repost pinned posts). For example:
 ```
