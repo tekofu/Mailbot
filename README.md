@@ -28,7 +28,11 @@ Installation:
     "discordToken" : "token goes here!",
     "youtubeToken" : "token goes here!",
     "xivToken"     : "token goes here!",
-    "starboardId"  : "ID goes here!"
+    "starboardId"  : { 
+        "Guild ID for Server 1" : "Starboard ID for Server 1",
+        "Guild ID for Server 2" : "Starboard ID for Server 2",
+        ...
+    }
 }
 ```
 4. Run `main.py`

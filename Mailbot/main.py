@@ -16,7 +16,7 @@ logger.addHandler(handler)
 tokenFile = open('config.json', 'r')
 tokenLoad = json.load(tokenFile)
 discordToken = tokenLoad['discordToken']
-boardId = int(tokenLoad['starboardId'])
+boardId = tokenLoad['starboardId']
 description = 'A bad Discord bot... for the Mailroom'
 
 
@@ -80,7 +80,8 @@ class Mailbot(commands.Bot):
                          icon_url=starMessage.author.avatar_url_as(format='png'))
         embed.timestamp = starMessage.created_at
 
-        boardChannel = bot.get_channel(boardId)
+        guildId = str(payload.guild_id)
+        boardChannel = bot.get_channel(int(boardId[guildId]))
 
         await boardChannel.send(embed=embed)
 
